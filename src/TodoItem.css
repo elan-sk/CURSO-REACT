@@ -1,0 +1,48 @@
+.item {
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    gap: 7px;
+    margin-bottom: 30px;
+    min-height: 50px;
+    padding: 15px;
+    position: relative;
+    width: 300px;
+
+    .item__completed {
+        color: #20232949 ;
+        font-size: 45px;
+    }
+    .item__completed:hover {
+        cursor: pointer;
+    }
+
+    .item__exit {
+        color: rgba(199, 36, 36, 0.685);
+        font-size: 20px;
+        position: absolute;
+        right: 9px;
+        top: 5px;
+    }
+
+    .item__exit:hover {
+        cursor: pointer;
+    }
+}
+
+.item:hover, .item:active, .item:focus {
+    background-color: rgb(255, 255, 201);
+}
+
+.item--completed {
+    .item__completed {
+        color: rgb(95, 241, 197) ;
+        font-size: 45px;
+    }
+}
+
+.item--completed p{
+    text-decoration: line-through;
+}

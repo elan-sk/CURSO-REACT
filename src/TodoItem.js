@@ -1,9 +1,12 @@
-function TodoItem() {
+import './TodoItem.css';
+
+function TodoItem({id, text, completed}) {
     return (
-        <li>
-            <span>v</span>
-            <p>Llorar con la llorona </p>
-            <span>x</span>
+        <li id={id} className={completed ? 'item item--completed' : 'item'} >
+            <span className="item__completed" >✔</span>
+            <p> {text} </p>
+            <span className="item__exit">✖</span>
+
         </li>
     );
 }
