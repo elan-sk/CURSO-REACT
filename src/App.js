@@ -7,7 +7,7 @@ import React from 'react';
 import './App.css'
 
 const defaultTodos = [
-  { text: 'Cortar cebolla', completed: false},
+  { text: 'Cortar cebolla melo', completed: false},
   { text: 'Tomar el curso de intro React.js', completed: false},
   { text: 'Llorar con la Llorona', completed: true},
   { text: 'Chinga a su madre', completed: false},
