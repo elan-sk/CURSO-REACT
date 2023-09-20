@@ -1,11 +1,11 @@
 import './TodoItem.css';
 
-function TodoItem({id, text, completed}) {
+function TodoItem(props) {
     return (
-        <li id={id} className={completed ? 'item item--completed' : 'item'} >
-            <span className="item__completed" >✔</span>
-            <p> {text} </p>
-            <span className="item__exit">✖</span>
+        <li id={props.id} className={props.completed ? 'item item--completed' : 'item'} >
+            <span className="item__completed" onClick={props.onComplete}>✔</span>
+            <p> {props.text} </p>
+            <span className="item__exit" onClick={props.onDelete}>✖</span>
 
         </li>
     );

@@ -4,6 +4,7 @@
     border-radius: 50%;
     bottom: 30px;
     color: white;
+    cursor: pointer;
     display: grid;
     font-size: 80px;
     font-weight: bolder;
