@@ -18,8 +18,12 @@ function TodoCounter({ total, completed }) {
 
     if (completed === total) {
         message = `¡Felicitaciones por completar todas <strong>(${total})</strong> las tareas!`;
-    } else {
+    } else{
         message = `Has completado <strong>${completed}</strong> de <strong>${total}</strong> TODOs`;
+    }
+
+    if (total === 0){
+        message = `¡No existe ninguna tarea!`;
     }
 
     return (
