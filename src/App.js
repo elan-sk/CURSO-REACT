@@ -7,11 +7,14 @@ import React from 'react';
 import './App.css'
 
 const defaultTodos = [
-  { text: 'Cortar cebolla melo', completed: false},
-  { text: 'Tomar el curso de intro React.js', completed: false},
-  { text: 'Llorar con la Llorona', completed: true},
-  { text: 'Chinga a su madre', completed: false},
-  { text: 'Guero culero', completed: false},
+  { text: 'Definir los selectores', completed: false},
+  { text: 'Organizar la tipografía', completed: false},
+  { text: 'Definir colores de fondo y texto', completed: false},
+  { text: 'Incluir detalles (sombras, bordes, overflow, etc)', completed: false},
+  { text: 'Definir espacios entre elementos', completed: false},
+  { text: 'Quitar referencias de prueba y ultimar detalles', completed: false},
+  { text: 'Organizar el css alfabéticamente', completed: false},
+  { text: 'Mandar el commit', completed: false},
 ]
 
 function App() {
