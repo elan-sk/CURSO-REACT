@@ -10,6 +10,7 @@ const defaultTodos = [
   { text: 'Definir los selectores', completed: false},
   { text: 'Definir colores de fondo', completed: false},
   { text: 'Organizar la tipografía', completed: false},
+  { text: 'Organizar la posición de elemento', completed: false},
   { text: 'Incluir detalles (sombras, bordes, overflow, etc)', completed: false},
   { text: 'Definir espacios entre elementos', completed: false},
   { text: 'Quitar referencias de prueba y ultimar detalles', completed: false},
