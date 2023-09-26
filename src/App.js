@@ -14,6 +14,7 @@ const defaultTodos = [
   { text: 'Incluir detalles (sombras, bordes, overflow, etc)', completed: false},
   { text: 'Definir espacios entre elementos', completed: false},
   { text: 'Quitar referencias de prueba y ultimar detalles', completed: false},
+  { text: 'Revisar el responsive', completed: false},
   { text: 'Organizar el css alfabéticamente', completed: false},
   { text: 'Mandar el commit', completed: false},
 ]
