@@ -1,0 +1,44 @@
+.Icon-svg {
+    height: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    width: 30px;
+}
+
+.Icon-svg:hover {
+    cursor: pointer;
+}
+
+.Icon-svg svg{
+    transition: all 0.2s ease-in;
+}
+
+
+.Icon-svg--delete {
+    height: 14px;
+    min-height: 14px;
+    min-width: 14px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 14px;
+}
+
+.Icon-svg--gray svg{
+    fill: rgb(175, 175, 175);
+}
+
+.Icon-svg--green svg{
+    fill: rgb(95, 241, 197);
+}
+
+
+.Icon-svg--hover-green svg:hover{
+    fill: rgb(95, 241, 197);
+}
+
+.Icon-svg--hover-red svg:hover{
+    fill: rgba(199, 36, 36, 0.685);
+}
+
+

@@ -7,7 +7,7 @@ import React from 'react';
 import './App.css'
 
 const defaultTodos = [
-  { text: 'Definir los selectores', completed: false},
+  { text: 'Definir los selectores', completed: true},
   { text: 'Definir colores de fondo', completed: false},
   { text: 'Organizar la tipografía', completed: false},
   { text: 'Organizar la posición de elemento', completed: false},
@@ -70,7 +70,7 @@ function App() {
         {searchedTodos.map( (todo, index) => (
           <TodoItem
             key={index}
-            id={index}
+            id={'Item-'+index}
             text={todo.text}
             completed={todo.completed}
             onComplete={() => completeTodo(index)}
