@@ -19,11 +19,23 @@ const defaultTodos = [
   { text: 'Mandar el commit', completed: false},
 ]
 
-function App() {
-  //estados
-  const [todos, setTodos] = React.useState(defaultTodos);
+// localStorage.setItem('TODOS_V1', defaultTodos);
+// localStorage.removeItem('TODOS_V1');
 
-  const [searchValue, setSearchValue] = React.useState('');
+function App() {
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos;
+
+  if (localStorageTodos) {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }else{
+    localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+    parsedTodos = defaultTodos;
+  }
+
+  const [todos, setTodos] = React.useState(parsedTodos);
+
+  const [searchValue, setSearchValue] = React.useState(parsedTodos);
 
   const completedTodos = todos.filter(
     todo => !!todo.completed
@@ -39,6 +51,11 @@ function App() {
     }
   );
 
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos);
+  };
+
   const completeTodo = key => {
     const newTodos = [...todos];
     if(newTodos[key].completed){
@@ -46,13 +63,13 @@ function App() {
     } else{
       newTodos[key].completed = true;
     }
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const deleteTodo = key => {
     const newTodos = [...todos];
     newTodos.splice(key, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   return (
