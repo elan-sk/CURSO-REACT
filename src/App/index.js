@@ -27,7 +27,7 @@ function App() {
     saveItem: saveTodos,
     loading,
     error,
-  } = useLocalStorage('TODOS_V1', []);
+  } = useLocalStorage('TODOS_V1', defaultTodos);
 
 
 
