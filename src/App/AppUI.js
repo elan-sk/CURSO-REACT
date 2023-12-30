@@ -25,8 +25,8 @@ function AppUI({
         <>
             {loading && (
                 <>
-                    <LoadingCounter/>
-                    <LoadingSearch/>
+                    <LoadingCounter />
+                    <LoadingSearch />
                 </>
             )}
 
@@ -44,8 +44,6 @@ function AppUI({
                 </>
             )}
 
-
-
             <TodoList>
                 {loading && (
                     <>
@@ -55,18 +53,19 @@ function AppUI({
                     </>
                 )}
                 {error && <TodosError />}
+                {!loading && (
+                    searchedTodos.map(todo => (
+                        <TodoItem
+                            key={todo.key}
+                            id={'Item-' + todo.key}
+                            text={todo.text}
+                            completed={todo.completed}
+                            onComplete={() => completeTodo(todo.key)}
+                            onDelete={() => deleteTodo(todo.key)}
+                        />
+                    ))
+                )}
                 {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
-
-                {searchedTodos.map(todo => (
-                    <TodoItem
-                        key={todo.key}
-                        id={'Item-' + todo.key}
-                        text={todo.text}
-                        completed={todo.completed}
-                        onComplete={() => completeTodo(todo.key)}
-                        onDelete={() => deleteTodo(todo.key)}
-                    />
-                ))}
             </TodoList>
 
             <CreateTodoButton />
