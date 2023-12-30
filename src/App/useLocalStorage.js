@@ -19,10 +19,8 @@ function useLocalStorage(itemName, initialValue) {
                     parsedItem = JSON.parse(localStorageItem);
                     setItem(parsedItem);
                 }
-
                 setLoading(false);
             } catch (error) {
-                setLoading(false);
                 setError(true);
             }
         }, 2000);
@@ -41,7 +39,6 @@ function useLocalStorage(itemName, initialValue) {
         error,
     };
 }
-
 
 export { useLocalStorage }
 
