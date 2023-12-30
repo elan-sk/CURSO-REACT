@@ -9,7 +9,7 @@ function TodoItem({text, id, completed, onComplete, onDelete}) {
                 completed = {completed}
                 onComplete = {onComplete}
             />
-            <p> {text} </p>
+            <p className='m-0'> {text} </p>
             <DeleteIcon
                 onDelete = {onDelete}
             />

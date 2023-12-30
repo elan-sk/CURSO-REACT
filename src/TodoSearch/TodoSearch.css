@@ -3,6 +3,12 @@
     text-align: center;
 }
 
+.search::placeholder {
+    color: #A5A5A5;
+    font-family: 'Montserrat';
+    font-weight: 400;
+}
+
 .search__input {
     background-color: white;
     border-radius: 3px;

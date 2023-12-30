@@ -1,10 +1,18 @@
-import { TodoCounter } from '../TodoCounter'
-import { TodoSearch } from '../TodoSearch'
-import { TodoList } from '../TodoList'
+import { TodoCounter } from '../TodoCounter';
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
+import { LoadingCounter } from '../TodosLoading/LoadingCounter';
+import { LoadingItem } from '../TodosLoading/LoadingItem';
+import { LoadingSearch } from '../TodosLoading/LoadingSearch';
+import { TodosError } from '../TodosError';
+import { EmptyTodos } from '../EmptyTodos';
 import { CreateTodoButton } from '../CreateTodoButton';
 
+
 function AppUI({
+    loading,
+    error,
     completedTodos,
     totalTodos,
     searchValue,
@@ -15,15 +23,40 @@ function AppUI({
 }) {
     return (
         <>
-            <TodoCounter
-                completed={completedTodos}
-                total={totalTodos}
-            />
-            <TodoSearch
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-            />
+            {loading && (
+                <>
+                    <LoadingCounter/>
+                    <LoadingSearch/>
+                </>
+            )}
+
+            {!loading && (
+                <>
+                    <TodoCounter
+                        completed={completedTodos}
+                        total={totalTodos}
+                    />
+
+                    <TodoSearch
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                    />
+                </>
+            )}
+
+
+
             <TodoList>
+                {loading && (
+                    <>
+                        <LoadingItem />
+                        <LoadingItem />
+                        <LoadingItem />
+                    </>
+                )}
+                {error && <TodosError />}
+                {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
+
                 {searchedTodos.map(todo => (
                     <TodoItem
                         key={todo.key}
@@ -35,6 +68,7 @@ function AppUI({
                     />
                 ))}
             </TodoList>
+
             <CreateTodoButton />
         </>
     );

@@ -1,0 +1,9 @@
+.LoadingTodo-completeIcon,
+.LoadingTodo-deleteIcon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
