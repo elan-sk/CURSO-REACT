@@ -6,8 +6,19 @@ body {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
+main{
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 #root {
   margin: 0 24px;
-  position: relative;
-  min-height: 100vh;
+}
+
+.logo {
+  width: 300px;
+  height: auto;
 }

@@ -3,16 +3,9 @@ import { useLocalStorage } from './useLocalStorage';
 const TodoContext = React.createContext();
 
 const defaultTodos = [
-    { key: 1, text: 'Definir los selectores', completed: true },
-    { key: 2, text: 'Definir colores de fondo', completed: false },
-    { key: 3, text: 'Organizar la tipografía', completed: false },
-    { key: 4, text: 'Organizar la posición de elemento', completed: false },
-    { key: 5, text: 'Incluir detalles (sombras, bordes, overflow, etc)', completed: false },
-    { key: 6, text: 'Definir espacios entre elementos', completed: false },
-    { key: 7, text: 'Quitar referencias de prueba y ultimar detalles', completed: false },
-    { key: 8, text: 'Revisar el responsive', completed: false },
-    { key: 9, text: 'Organizar el css alfabéticamente', completed: false },
-    { key: 10, text: 'Mandar el commit', completed: false },
+    { key: 1, text: 'Tarea 1', completed: true },
+    { key: 2, text: 'Tarea 2', completed: false },
+    { key: 3, text: 'Tarea 3', completed: false },
 ]
 
 
