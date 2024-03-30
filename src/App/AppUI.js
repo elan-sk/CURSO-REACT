@@ -44,6 +44,8 @@ function AppUI() {
                         <LoadingItem />
                         <LoadingItem />
                         <LoadingItem />
+                        <LoadingItem />
+                        <LoadingItem />
                     </>
                 )}
                 {error && <TodosError />}
