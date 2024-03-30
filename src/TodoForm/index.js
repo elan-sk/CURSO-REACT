@@ -7,13 +7,28 @@ function TodoForm() {
     const {
         addTodo,
         setOpenModal,
+        modeEdit,
+        getTodo,
+        setTodo,
     } = React.useContext(TodoContext);
-    const [newTodoValue, setNewTodoValue] = React.useState('');
+
+    let textAreaInitial = modeEdit ? (
+        getTodo(modeEdit).text
+    ):(
+        ''
+    );
+
+    const [newTodoValue, setNewTodoValue] = React.useState(textAreaInitial);
 
     const onSubmit = (event) => {
-        event.preventDefault();
-        addTodo(newTodoValue);
         setOpenModal(false);
+
+        if (modeEdit) {
+            setTodo(modeEdit, newTodoValue);
+        } else {
+            event.preventDefault();
+            addTodo(newTodoValue);
+        }
     }
 
     const onReset = () => {
@@ -28,14 +43,18 @@ function TodoForm() {
         <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5'>
             <label className='p-2'>
                 <b>
-                    Escribe tu nuevo TODO
+                    {modeEdit ? (
+                        'Modifica tu TODO'
+                    ):(
+                        'Escribe tu nuevo TODO'
+                    )}
                 </b>
             </label>
             <textarea
                 placeholder='Ingresa tu nuevo TODO'
                 className='form-control textarea'
-                value={newTodoValue}
                 onChange={onChange}
+                value={newTodoValue}
             />
             <div className='d-flex justify-content-center'>
                 <button
@@ -46,7 +65,11 @@ function TodoForm() {
                 <button
                     type='submit'
                     className='TodoForm-button TodoForm-button--add btn btn-success mt-3 m-2'>
-                    Añadir
+                    {modeEdit ? (
+                        'Modificar'
+                    ):(
+                        'Añadir'
+                    )}
                 </button>
             </div>
         </form>

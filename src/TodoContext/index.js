@@ -19,6 +19,7 @@ function TodoProvider({ children }) {
 
     const [searchValue, setSearchValue] = React.useState('');
     const [openModal, setOpenModal] = React.useState(false);
+    const [modeEdit, setModeEdit] = React.useState(null);
 
     const completedTodos = todos.filter(
         todo => !!todo.completed
@@ -32,6 +33,21 @@ function TodoProvider({ children }) {
             return todoText.includes(searchText);
         }
     );
+
+
+    const setTodo = (key, textModified) => {
+        const newTodos = [...todos];
+        let itemFound= newTodos.find(item => item.key === key)
+        itemFound.text = textModified;
+        saveTodos(newTodos);
+    };
+
+    const getTodo = (key) => {
+        const newTodos = [...todos];
+        let itemFound= newTodos.find(item => item.key === key)
+
+        return itemFound;
+    };
 
     const addTodo = (text) => {
         const newTodos = [...todos];
@@ -77,7 +93,11 @@ function TodoProvider({ children }) {
             deleteTodo,
             openModal,
             setOpenModal,
+            modeEdit,
+            setModeEdit,
             addTodo,
+            getTodo,
+            setTodo,
         }}>
             {children}
         </TodoContext.Provider>

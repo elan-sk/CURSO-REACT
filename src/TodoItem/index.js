@@ -1,17 +1,29 @@
-import{CompleteIcon} from '../TodoIcon/CompleteIcon'
-import{DeleteIcon} from '../TodoIcon/DeleteIcon'
-import './TodoItem.css';
+import React from 'react';
+import { CompleteIcon } from '../TodoIcon/CompleteIcon'
+import { DeleteIcon } from '../TodoIcon/DeleteIcon'
+import { TodoContext } from '../TodoContext'
+import './TodoItem.css'
 
-function TodoItem({text, id, completed, onComplete, onDelete}) {
+function TodoItem({ keyId, text, id, completed, onComplete, onDelete }) {
+    const {
+        setOpenModal,
+        setModeEdit,
+    } = React.useContext(TodoContext);
     return (
-        <li id={id} className={completed ? 'Item Item--completed' : 'Item'} >
+        <li id={id} className={completed ? 'Item Item--completed' : 'Item'}
+            onDoubleClick={() => {
+                    setOpenModal(state => !state);
+                    setModeEdit(keyId);
+                }
+            }
+        >
             <CompleteIcon
-                completed = {completed}
-                onComplete = {onComplete}
+                completed={completed}
+                onComplete={onComplete}
             />
             <p className='m-0'> {text} </p>
             <DeleteIcon
-                onDelete = {onDelete}
+                onDelete={onDelete}
             />
         </li>
     );
