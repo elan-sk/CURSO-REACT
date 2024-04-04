@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Todo-SK",
+  "name": "Gestor Todo Elan-sk",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "react192.png",
+      "src": "logo-elan-skasda.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "react512.png",
+      "src": "logo-elan-skasda.png",
       "type": "image/png",
       "sizes": "512x512"
     }
