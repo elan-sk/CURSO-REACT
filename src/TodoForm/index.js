@@ -7,27 +7,24 @@ function TodoForm() {
     const {
         addTodo,
         setOpenModal,
-        modeEdit,
+        todoEdit,
         getTodo,
         setTodo,
     } = React.useContext(TodoContext);
 
-    let textAreaInitial = modeEdit ? (
-        getTodo(modeEdit).text
-    ):(
-        ''
-    );
-
-    const [newTodoValue, setNewTodoValue] = React.useState(textAreaInitial);
+    const [newTodoValues, setNewTodoValues] = React.useState({
+        text: todoEdit ? getTodo(todoEdit).text : null,
+        priority: getTodo(todoEdit)?.priority || null,
+    });
 
     const onSubmit = (event) => {
         setOpenModal(false);
 
-        if (modeEdit) {
-            setTodo(modeEdit, newTodoValue);
+        if (todoEdit) {
+            setTodo(todoEdit, newTodoValues);
         } else {
             event.preventDefault();
-            addTodo(newTodoValue);
+            addTodo(newTodoValues);
         }
     }
 
@@ -35,27 +32,43 @@ function TodoForm() {
         setOpenModal(false);
     }
 
-    const onChange = (event) => {
-        setNewTodoValue(event.target.value);
-    }
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setNewTodoValues(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const { text, priority } = newTodoValues;
 
     return (
         <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5'>
             <label className='p-2'>
                 <b>
-                    {modeEdit ? (
-                        'Modifica tu TODO'
-                    ):(
-                        'Escribe tu nuevo TODO'
-                    )}
+                    {todoEdit ? 'Modifica tu TODO':'Escribe tu nuevo TODO'}
                 </b>
             </label>
             <textarea
+                name="text"
                 placeholder='Ingresa tu nuevo TODO'
                 className='form-control textarea'
-                onChange={onChange}
-                value={newTodoValue}
+                onChange={handleChange}
+                value={text}
             />
+            <div>
+                <label className='mt-3 mr-2' for="priority" ><b>Prioridad:</b></label>
+                <input
+                    name="priority"
+                    type="number" id="priority"
+                    min="0" max="100" step="1"
+                    onChange={handleChange}
+                    value={priority}
+                    />
+            </div>
+
+
+
             <div className='d-flex justify-content-center'>
                 <button
                     type='reset'
@@ -65,11 +78,7 @@ function TodoForm() {
                 <button
                     type='submit'
                     className='TodoForm-button TodoForm-button--add btn btn-success mt-3 m-2'>
-                    {modeEdit ? (
-                        'Modificar'
-                    ):(
-                        'Añadir'
-                    )}
+                    {todoEdit ? 'Modificar':'Añadir'}
                 </button>
             </div>
         </form>

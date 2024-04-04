@@ -51,7 +51,10 @@ function AppUI() {
                 {error && <TodosError />}
                 {!loading && searchedTodos.length === 0 && <EmptyTodos />}
                 {!loading && (
-                    searchedTodos.map(todo => (
+                    searchedTodos
+                    .slice()
+                    .sort((a, b) => b.priority - a.priority)
+                    .map(todo => (
                         <TodoItem
                             key={todo.key}
                             keyId={todo.key}

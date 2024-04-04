@@ -7,13 +7,13 @@ import './TodoItem.css'
 function TodoItem({ keyId, text, id, completed, onComplete, onDelete }) {
     const {
         setOpenModal,
-        setModeEdit,
+        setTodoEdit,
     } = React.useContext(TodoContext);
     return (
         <li id={id} className={completed ? 'Item Item--completed' : 'Item'}
             onDoubleClick={() => {
                     setOpenModal(state => !state);
-                    setModeEdit(keyId);
+                    setTodoEdit(keyId);
                 }
             }
         >

@@ -3,9 +3,9 @@ import { useLocalStorage } from './useLocalStorage';
 const TodoContext = React.createContext();
 
 const defaultTodos = [
-    { key: 1, text: 'Tarea 1', completed: true },
-    { key: 2, text: 'Tarea 2', completed: false },
-    { key: 3, text: 'Tarea 3', completed: false },
+    { key: 1,  priority: 1, text: 'Tarea 1', completed: true },
+    { key: 2,  priority: 1, text: 'Tarea 2', completed: false },
+    { key: 3,  priority: 1, text: 'Tarea 3', completed: false },
 ]
 
 
@@ -19,7 +19,7 @@ function TodoProvider({ children }) {
 
     const [searchValue, setSearchValue] = React.useState('');
     const [openModal, setOpenModal] = React.useState(false);
-    const [modeEdit, setModeEdit] = React.useState(null);
+    const [todoEdit, setTodoEdit] = React.useState(null);
 
     const completedTodos = todos.filter(
         todo => !!todo.completed
@@ -35,28 +35,29 @@ function TodoProvider({ children }) {
     );
 
 
-    const setTodo = (key, textModified) => {
+    const setTodo = (key, values) => {
         const newTodos = [...todos];
         let itemFound= newTodos.find(item => item.key === key)
-        itemFound.text = textModified;
+        itemFound.text = values?.text;
+        itemFound.priority = values?.priority;
         saveTodos(newTodos);
     };
 
     const getTodo = (key) => {
         const newTodos = [...todos];
         let itemFound= newTodos.find(item => item.key === key)
-
         return itemFound;
     };
 
-    const addTodo = (text) => {
+    const addTodo = (values) => {
         const newTodos = [...todos];
         let indexLastTodo = newTodos.length - 1;
         let newKey = indexLastTodo >= 0 ? newTodos[indexLastTodo].key + 1 : 1;
         newTodos.push({
             key: newKey,
-            text,
+            text: values?.text || null,
             completed: false,
+            priority: values?.priority || 1,
         })
         saveTodos(newTodos);
     };
@@ -93,8 +94,8 @@ function TodoProvider({ children }) {
             deleteTodo,
             openModal,
             setOpenModal,
-            modeEdit,
-            setModeEdit,
+            todoEdit,
+            setTodoEdit,
             addTodo,
             getTodo,
             setTodo,
