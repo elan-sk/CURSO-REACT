@@ -21,6 +21,8 @@ function AppUI() {
         searchedTodos,
         completeTodo,
         deleteTodo,
+        upPriorityTodo,
+        downPriorityTodo,
         openModal,
     } = React.useContext(TodoContext);
 
@@ -38,6 +40,7 @@ function AppUI() {
                     <TodoSearch />
                 </>
             )}
+
             <TodoList>
                 {loading && (
                     <>
@@ -50,6 +53,11 @@ function AppUI() {
                 )}
                 {error && <TodosError />}
                 {!loading && searchedTodos.length === 0 && <EmptyTodos />}
+                {!loading && searchedTodos.length !== 0 &&(
+                    <div className='text-center pb-2'>
+                        <span >Doble click para editar</span>
+                    </div>
+                )}
                 {!loading && (
                     searchedTodos
                     .slice()
@@ -58,11 +66,14 @@ function AppUI() {
                         <TodoItem
                             key={todo.key}
                             keyId={todo.key}
+                            priority={todo.priority}
                             id={'Item-' + todo.key}
                             text={todo.text}
                             completed={todo.completed}
                             onComplete={() => completeTodo(todo.key)}
                             onDelete={() => deleteTodo(todo.key)}
+                            upPriority={() => upPriorityTodo(todo.key)}
+                            downPriority={() => downPriorityTodo(todo.key)}
                         />
                     ))
                 )}

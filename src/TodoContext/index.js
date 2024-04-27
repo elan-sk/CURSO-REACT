@@ -4,10 +4,9 @@ const TodoContext = React.createContext();
 
 const defaultTodos = [
     { key: 1,  priority: 1, text: 'Tarea 1', completed: true },
-    { key: 2,  priority: 1, text: 'Tarea 2', completed: false },
-    { key: 3,  priority: 1, text: 'Tarea 3', completed: false },
+    { key: 2,  priority: 2, text: 'Tarea 2', completed: false },
+    { key: 3,  priority: 3, text: 'Tarea 3', completed: false },
 ]
-
 
 function TodoProvider({ children }) {
     const {
@@ -34,7 +33,6 @@ function TodoProvider({ children }) {
         }
     );
 
-
     const setTodo = (key, values) => {
         const newTodos = [...todos];
         let itemFound= newTodos.find(item => item.key === key)
@@ -57,27 +55,63 @@ function TodoProvider({ children }) {
             key: newKey,
             text: values?.text || null,
             completed: false,
-            priority: values?.priority || 1,
+            priority: newTodos.length + 1,
         })
         saveTodos(newTodos);
     };
 
+    const reorderPriorities = (initialPriority, newTodos) => {
+        if(newTodos.length === 0) return newTodos
+        const lastPriority =  newTodos.length + 1;
+        for (let index = initialPriority+1 ; index <= lastPriority; index++) {
+            let itemFound= newTodos.find(item => item.priority === index)
+            itemFound.priority = index - 1
+        }
+        return newTodos
+    }
 
     const completeTodo = (key) => {
         const newTodos = [...todos];
-        const todoIndex = newTodos.findIndex(
-            (todo) => todo.key === key
-        );
+        const todoIndex = newTodos.findIndex((todo) => todo.key === key);
         newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
         saveTodos(newTodos);
     };
 
     const deleteTodo = (key) => {
+        let newTodos = [...todos];
+        const todoIndex = newTodos.findIndex((todo) => todo.key === key);
+        const priority = newTodos[todoIndex].priority
+        newTodos.splice(todoIndex, 1)
+        saveTodos(reorderPriorities(priority, newTodos));
+    };
+
+    const upPriorityTodo = (key) => {
         const newTodos = [...todos];
-        const todoIndex = newTodos.findIndex(
-            (todo) => todo.key === key
-        );
-        newTodos.splice(todoIndex, 1);
+        const todoIndex = newTodos.findIndex((todo) => todo.key === key);
+        const currentTodo = newTodos[todoIndex];
+        const currentPriority = currentTodo.priority;
+
+        if(newTodos.length <= 1 || newTodos.length <= currentPriority) return
+        const nextTodo= newTodos.find(item => item.priority === currentPriority + 1)
+        const nextPriority = nextTodo.priority
+        currentTodo.priority = nextPriority
+        nextTodo.priority = currentPriority
+
+        saveTodos(newTodos);
+    };
+
+    const downPriorityTodo = (key) => {
+        const newTodos = [...todos];
+        const todoIndex = newTodos.findIndex((todo) => todo.key === key);
+        const currentTodo = newTodos[todoIndex];
+        const currentPriority = currentTodo.priority;
+
+        if(newTodos.length <= 1 || currentPriority <= 1) return
+        const previousTodo= newTodos.find(item => item.priority === currentPriority - 1)
+        const previousPriority = previousTodo.priority
+        currentTodo.priority = previousPriority
+        previousTodo.priority = currentPriority
+
         saveTodos(newTodos);
     };
 
@@ -92,6 +126,8 @@ function TodoProvider({ children }) {
             searchedTodos,
             completeTodo,
             deleteTodo,
+            upPriorityTodo,
+            downPriorityTodo,
             openModal,
             setOpenModal,
             todoEdit,
@@ -104,7 +140,6 @@ function TodoProvider({ children }) {
         </TodoContext.Provider>
     )
 }
-
 
 export { TodoContext, TodoProvider };
 

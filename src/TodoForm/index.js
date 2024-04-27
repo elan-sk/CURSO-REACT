@@ -17,10 +17,12 @@ function TodoForm() {
         priority: getTodo(todoEdit)?.priority || null,
     });
 
+    const [isEmpty, setIsEmpty] = React.useState(true);
+
     const onSubmit = (event) => {
         setOpenModal(false);
 
-        if (todoEdit) {
+        if (todoEdit ) {
             setTodo(todoEdit, newTodoValues);
         } else {
             event.preventDefault();
@@ -34,10 +36,12 @@ function TodoForm() {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+        setIsEmpty(value === '');
         setNewTodoValues(prevState => ({
             ...prevState,
             [name]: value
         }));
+
     };
 
     const { text, priority } = newTodoValues;
@@ -57,18 +61,12 @@ function TodoForm() {
                 value={text}
             />
             <div>
-                <label className='mt-3 mr-2' for="priority" ><b>Prioridad:</b></label>
                 <input
+                    hidden
                     name="priority"
-                    type="number" id="priority"
-                    min="0" max="100" step="1"
-                    onChange={handleChange}
                     value={priority}
                     />
             </div>
-
-
-
             <div className='d-flex justify-content-center'>
                 <button
                     type='reset'
@@ -76,6 +74,7 @@ function TodoForm() {
                     Cancelar
                 </button>
                 <button
+                    disabled={isEmpty}
                     type='submit'
                     className='TodoForm-button TodoForm-button--add btn btn-success mt-3 m-2'>
                     {todoEdit ? 'Modificar':'Añadir'}

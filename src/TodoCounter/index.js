@@ -13,7 +13,7 @@ function TodoCounter() {
     if (completedTodos === totalTodos) {
         message = `¡Felicitaciones por completar todas <strong>(${totalTodos})</strong> las tareas!`;
     } else{
-        message = `Has completado <strong>${completedTodos}</strong> de <strong>${totalTodos}</strong> TODOs`;
+        message = `Has completado <strong>${completedTodos}</strong> de <strong>${totalTodos}</strong> tareas`;
     }
 
     if (totalTodos === 0){
