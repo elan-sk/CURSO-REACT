@@ -50,12 +50,12 @@ function TodoForm() {
         <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5'>
             <label className='p-2'>
                 <b>
-                    {todoEdit ? 'Modifica tu TODO':'Escribe tu nuevo TODO'}
+                    {todoEdit ? 'Modifica tu tarea':'Escribe tu nueva tarea'}
                 </b>
             </label>
             <textarea
                 name="text"
-                placeholder='Ingresa tu nuevo TODO'
+                placeholder='Ingresa tu nueva tarea'
                 className='form-control textarea'
                 onChange={handleChange}
                 value={text}

@@ -8,7 +8,7 @@ function EmptyTodos() {
   return (
     <>
       {searchValue === "" && (
-        <p>¡Crea tu primer TODO!</p>
+        <p>¡Crea tu primer Tarea!</p>
       )}
       {searchValue !== "" && (
         <p>¡No hay ningún resultado!</p>
