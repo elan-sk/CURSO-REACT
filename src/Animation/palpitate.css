@@ -1,5 +1,16 @@
-@keyframes palpite {
-    0% { background-color: red; }
-    50% { background-color: blue; }
-    100% { background-color: red; }
-}.palpite { animation: palpite .5s ease-in-out forwards }
+@keyframes palpiteIn {
+    0% { background-color: var(--color-yellow); scale: 120%; }
+    25% { background-color: var(--color-green); }
+    50% { background-color: var(--color-yellow); transform: rotate(2deg)}
+    75% { background-color: var(--color-green); transform: rotate(-2deg)}
+    100% { background-color: var(--color-yellow); scale: 100%; transform: rotate(0)}
+}.palpite-in { animation: palpiteIn .5s ease forwards }
+
+@keyframes palpiteOut {
+    0% { background-color: var(--color-yellow); scale: 120%; }
+    25% { background-color: var(--color-red); }
+    50% { background-color: var(--color-yellow); transform: rotate(2deg)}
+    75% { background-color: var(--color-red); transform: rotate(-2deg)}
+    100% { background-color: var(--color-yellow); scale: 100%; transform: rotate(0)}
+}.palpite-out { animation: palpiteOut .5s ease forwards }
+

@@ -5,26 +5,6 @@ import './palpitate.css';
 
 const timeAnimation = 300
 
-// function animateElement(id, animation, time = timeAnimation, callback) {
-//     const animate = () => {
-//         const element = document.getElementById(id)
-//         element.classList.toggle(animation)
-
-//         setTimeout(() => {
-//             element.classList.toggle(animation)
-//         }, time);
-//     }
-
-//     if (callback && typeof callback === 'function') {
-//         callback(() => {
-//             animate()
-//         });
-//     }else{
-//         animate()
-//     }
-// }
-
-
 async function animateElement(id, animation, time = timeAnimation, callback) {
     if (callback && typeof callback === 'function') {
         console.log('entre');

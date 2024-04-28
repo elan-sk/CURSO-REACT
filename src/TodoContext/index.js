@@ -65,7 +65,7 @@ function TodoProvider({ children }) {
 
         animateElement(
             'Item-'+newKey,
-            'palpite',
+            'palpite-in',
             500,
             saveTodos.bind(null, newTodos)
         )

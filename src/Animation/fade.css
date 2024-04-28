@@ -8,5 +8,5 @@
     from { opacity: 1 }
     to {opacity: 0 }
 }.fade-out {
-    opacity: 0;
-    animation: fadeIn var(--time-animation ) forwards }
+    animation: fadeIn var(--time-animation ) forwards
+}
