@@ -11,7 +11,6 @@ function TodoItem({
         keyId,
         text,
         id,
-        priority,
         completed,
         onComplete,
         onDelete,

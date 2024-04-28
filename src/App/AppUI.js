@@ -13,7 +13,6 @@ import { Modal } from '../Modal';
 import { TodoForm } from '../TodoForm';
 import { TodoContext } from '../TodoContext';
 
-
 function AppUI() {
     const {
         loading,
@@ -41,6 +40,11 @@ function AppUI() {
                 </>
             )}
 
+            {!loading && searchedTodos.length !== 0 &&(
+                <div className='text-center pb-2'>
+                    <span >Doble click para editar</span>
+                </div>
+            )}
             <TodoList>
                 {loading && (
                     <>
@@ -53,11 +57,6 @@ function AppUI() {
                 )}
                 {error && <TodosError />}
                 {!loading && searchedTodos.length === 0 && <EmptyTodos />}
-                {!loading && searchedTodos.length !== 0 &&(
-                    <div className='text-center pb-2'>
-                        <span >Doble click para editar</span>
-                    </div>
-                )}
                 {!loading && (
                     searchedTodos
                     .slice()

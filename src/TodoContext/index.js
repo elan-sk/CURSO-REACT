@@ -1,12 +1,8 @@
 import React from "react";
 import { useLocalStorage } from './useLocalStorage';
-const TodoContext = React.createContext();
+import { animateMultiples } from '../animation'
 
-const defaultTodos = [
-    { key: 1,  priority: 1, text: 'Tarea 1', completed: true },
-    { key: 2,  priority: 2, text: 'Tarea 2', completed: false },
-    { key: 3,  priority: 3, text: 'Tarea 3', completed: false },
-]
+const TodoContext = React.createContext();
 
 function TodoProvider({ children }) {
     const {
@@ -14,7 +10,7 @@ function TodoProvider({ children }) {
         saveItem: saveTodos,
         loading,
         error,
-    } = useLocalStorage('TODOS_V1', defaultTodos);
+    } = useLocalStorage('TODOS_V1', []);
 
     const [searchValue, setSearchValue] = React.useState('');
     const [openModal, setOpenModal] = React.useState(false);
@@ -32,6 +28,14 @@ function TodoProvider({ children }) {
             return todoText.includes(searchText);
         }
     );
+
+    const moveTodo = (key, values) => {
+        const newTodos = [...todos];
+        let itemFound= newTodos.find(item => item.key === key)
+        itemFound.text = values?.text;
+        itemFound.priority = values?.priority;
+        saveTodos(newTodos);
+    };
 
     const setTodo = (key, values) => {
         const newTodos = [...todos];
@@ -85,6 +89,7 @@ function TodoProvider({ children }) {
         saveTodos(reorderPriorities(priority, newTodos));
     };
 
+
     const upPriorityTodo = (key) => {
         const newTodos = [...todos];
         const todoIndex = newTodos.findIndex((todo) => todo.key === key);
@@ -97,6 +102,10 @@ function TodoProvider({ children }) {
         currentTodo.priority = nextPriority
         nextTodo.priority = currentPriority
 
+        animateMultiples(
+            ['Item-'+ currentTodo.key, 'Item-'+ nextTodo.key],
+            ['move-up','move-down']
+        );
         saveTodos(newTodos);
     };
 
@@ -112,6 +121,10 @@ function TodoProvider({ children }) {
         currentTodo.priority = previousPriority
         previousTodo.priority = currentPriority
 
+        animateMultiples(
+            ['Item-'+ currentTodo.key, 'Item-'+ previousTodo.key],
+            ['move-down','move-up']
+        );
         saveTodos(newTodos);
     };
 
@@ -120,6 +133,7 @@ function TodoProvider({ children }) {
             loading,
             error,
             completedTodos,
+            moveTodo,
             totalTodos,
             searchValue,
             setSearchValue,

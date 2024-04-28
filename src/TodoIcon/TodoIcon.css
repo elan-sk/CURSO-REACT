@@ -1,8 +1,17 @@
 .Icon-svg {
-    height: 30px;
-    min-height: 30px;
-    min-width: 30px;
-    width: 30px;
+    --size: 40px;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
+    width: var(--size);
+
+    @media (width >= 768px) {
+        --size: 30px;
+        height: var(--size);
+        min-height: var(--size);
+        min-width: var(--size);
+        width: var(--size);
+    }
 }
 
 .Icon-svg:hover {
@@ -14,41 +23,64 @@
 }
 
 .Icon-svg--delete {
-    height: 14px;
-    min-height: 14px;
-    min-width: 14px;
+    --size: 14px;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
     position: absolute;
     right: 10px;
-    top: 10px;
-    width: 14px;
+    top: 5px;
+    width: var(--size);
 }
 
 .Icon-svg--gray svg{
-    fill: rgb(175, 175, 175);
+    fill: var(--color-gray);
 }
 
 .Icon-svg--green svg{
-    fill: rgb(95, 241, 197);
+    fill: var(--color-green);
 }
 
 .Icon-svg--hover-green svg:hover{
-    fill: rgb(95, 241, 197);
+    fill: var(--color-green);
 }
 
 .Icon-svg--hover-red svg:hover{
-    fill: rgba(199, 36, 36, 0.685);
+    fill: var(--color-red);
 }
 
 .Icon-svg--priorityUp, .Icon-svg--priorityDown{
+    --size: 30px;
+    bottom: 17px;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
+    pointer-events: none;
     position: absolute;
     right: 8px;
-    height: 20px;
-    min-height: 20px;
-    min-width: 20px;
-    width: 20px;
-    bottom: 15px;
+    width: var(--size);
+
+    @media (width >= 768px) {
+        --size: 20px;
+        height: var(--size);
+        min-height: var(--size);
+        min-width: var(--size);
+        width: var(--size);
+    }
+
+    svg {
+        pointer-events: none;
+    }
+
+    path{
+        pointer-events: initial;
+    }
 }
 
 .Icon-svg--priorityUp{
-    bottom: 33px;
+    bottom: 42px;
+
+    @media (width >= 768px) {
+        bottom: 33px;
+    }
 }

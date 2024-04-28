@@ -47,7 +47,7 @@ function TodoForm() {
     const { text, priority } = newTodoValues;
 
     return (
-        <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5'>
+        <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5 fade-in'>
             <label className='p-2'>
                 <b>
                     {todoEdit ? 'Modifica tu tarea':'Escribe tu nueva tarea'}

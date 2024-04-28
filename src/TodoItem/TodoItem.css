@@ -1,19 +1,20 @@
 .Item {
     align-items: center;
-    background-color: white;
+    background-color: var(--color-white);
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     gap: 15px;
     margin-bottom: 30px;
-    min-height: 110px;
+    min-height: 120px;
     padding: 30px 15px;
     position: relative;
-    width: 350px;
+    max-width: 350px;
+    width: 100%;
     overflow: hidden;
 
     .Item__completed {
-        color: #20232949 ;
+        color: var(--color-gray);
         font-size: 45px;
     }
 
@@ -25,12 +26,12 @@
 }
 
 .Item:hover, .Item:active, .Item:focus {
-    background-color: rgb(255, 255, 201);
+    background-color: var(--color-yellow);
 }
 
 .Item--completed {
     .item__completed {
-        color: rgb(95, 241, 197) ;
+        color: var(--color-green);
         font-size: 45px;
     }
 }
