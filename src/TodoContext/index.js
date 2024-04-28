@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocalStorage } from './useLocalStorage';
-import { animateMultiples } from '../animation'
+import { animateMultiples } from '../Animation';
+import { animateElement } from '../Animation';
 
 const TodoContext = React.createContext();
 
@@ -61,7 +62,13 @@ function TodoProvider({ children }) {
             completed: false,
             priority: newTodos.length + 1,
         })
-        saveTodos(newTodos);
+
+        animateElement(
+            'Item-'+newKey,
+            'palpite',
+            500,
+            saveTodos.bind(null, newTodos)
+        )
     };
 
     const reorderPriorities = (initialPriority, newTodos) => {

@@ -12,6 +12,7 @@ import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
 import { TodoForm } from '../TodoForm';
 import { TodoContext } from '../TodoContext';
+import { Logo } from '../Logo'
 
 function AppUI() {
     const {
@@ -39,7 +40,6 @@ function AppUI() {
                     <TodoSearch />
                 </>
             )}
-
             {!loading && searchedTodos.length !== 0 &&(
                 <div className='text-center pb-2'>
                     <span >Doble click para editar</span>
@@ -78,6 +78,7 @@ function AppUI() {
                 )}
             </TodoList>
             <CreateTodoButton />
+            <Logo src="./logo-elan-sk.svg"/>
 
             {openModal && (
                 <Modal>

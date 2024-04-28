@@ -5,4 +5,7 @@
     --color-yellow: #FFFFC9;
     --color-green: #5FF1C5;
     --color-red: #c72424b3;
+
+    --time-animation: .3s;
+    --margin-bottom: 30px;
 }

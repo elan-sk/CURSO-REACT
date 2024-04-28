@@ -10,7 +10,7 @@ function CreateTodoButton() {
         setTodoEdit,
     } = React.useContext(TodoContext);
     return (
-        <button className="create-todo-button" onClick = {e =>{
+        <button className="create-todo-button fade-in" onClick = {e =>{
             setOpenModal(state => !state);
             setTodoEdit(null);
         }}

@@ -1,0 +1,12 @@
+@keyframes moveUp {
+    from { transform: translateY(calc(100% + var(--margin-bottom))) }
+    to { translate: 0% }
+}.move-up { animation: moveUp var(--time-animation ) ease-in-out forwards }
+
+
+@keyframes moveDown {
+    from { transform: translateY(calc(-100% - var(--margin-bottom))) }
+    to { translate: 0% }
+}.move-down { animation: moveDown var(--time-animation ) ease-in-out forwards }
+
+
