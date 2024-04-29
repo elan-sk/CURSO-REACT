@@ -56,18 +56,17 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
     await new Promise(resolve => {
         const element = document.getElementById(id);
         element.classList.add(animation);
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             resolve();
         }, time);
 
-       // clearTimeout(timeoutId);
+       clearTimeout(timeoutId);
     });
 
     if (callback && typeof callback === 'function') {
         console.log('entre');
         await new Promise(resolve => {
-            callback();
-            resolve();
+            callback(resolve);
         });
     }
     
