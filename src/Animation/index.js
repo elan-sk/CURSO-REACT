@@ -5,6 +5,7 @@ import './palpitate.css';
 
 const timeAnimation = 300
 
+
 async function animateElement(id, animation, time = timeAnimation, callback) {
     if (callback && typeof callback === 'function') {
         await new Promise(resolve => {
@@ -23,34 +24,49 @@ async function animateElement(id, animation, time = timeAnimation, callback) {
 }
 
 
-
-function animateElements(ids, animation, time = timeAnimation) {
-    ids.forEach( id => {
-        const element = document.getElementById(id)
-        element.classList.toggle(animation)
-
-        const timeoutId = setTimeout(() => {
+async function animateElements(ids, animation, time = timeAnimation) {
+    await new Promise(resolve => {
+        ids.forEach(id => {
+            const element = document.getElementById(id)
             element.classList.toggle(animation)
-        }, time);
+        });
+        resolve();
+    })
 
-        clearTimeout(timeoutId);
+    await new Promise(resolve => {
+        const timeoutId = setTimeout(() => {
+            ids.forEach(id => {
+                const element = document.getElementById(id)
+                element.classList.toggle(animation)
+                resolve(clearTimeout(timeoutId));
+            });
+        }, time);
     });
 }
 
-function animateMultiples(ids, animations, time = timeAnimation) {
-    ids.forEach( (id, index) => {
-        const element = document.getElementById(id)
-        element.classList.toggle(animations[index])
+async function animateMultiples(ids, animations, time = timeAnimation) {
+    await new Promise(resolve => {
+        ids.forEach((id, index) => {
+            const element = document.getElementById(id)
+            element.classList.add(animations[index])
+        });
+        resolve();
+    });
 
-        setTimeout(() => {
-            element.classList.toggle(animations[index])
+    await new Promise(resolve => {
+        const timeoutId = setTimeout(() => {
+            ids.forEach((id, index) => {
+                const element = document.getElementById(id)
+                element.classList.remove(animations[index])
+                resolve(clearTimeout(timeoutId));
+            });
         }, time);
     });
+
 }
 
 async function animateExit(id, animation, time = timeAnimation, callback) {
     await new Promise(resolve => {
-        console.log('entre');
         const element = document.getElementById(id);
         element.classList.add(animation);
         const timeoutId = setTimeout(() => {
@@ -60,30 +76,16 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
 
 
     if (callback && typeof callback === 'function') {
-        console.log('entre');
         await new Promise(resolve => {
             callback(resolve);
         });
     }
 }
 
-function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) {
-    const element = document.getElementById(id)
-    const [oldClass, newClass] = replaceClass
-
-    element.classList.replace(oldClass, newClass)
-    element.classList.toggle(animation)
-
-    setTimeout(() => {
-        element.classList.toggle(animation)
-        return
-    }, time);
-}
 
 export {
     animateElement,
     animateElements,
     animateMultiples,
     animateExit,
-    animateReplaceClass,
 };

@@ -12,6 +12,8 @@
     place-content: center;
     position: fixed;
     right: 30px;
+    left: calc(100% - 110px);
+
     width: 80px;
     transition: all 0.1s ease-out;
 }
