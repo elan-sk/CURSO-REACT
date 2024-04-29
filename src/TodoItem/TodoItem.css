@@ -6,12 +6,12 @@
     display: flex;
     gap: 15px;
     margin-bottom: 30px;
+    max-width: 350px;
     min-height: 115px;
+    overflow: hidden;
     padding: 30px 15px;
     position: relative;
-    max-width: 350px;
     width: 100%;
-    overflow: hidden;
 
     .Item__completed {
         color: var(--color-gray);
@@ -19,9 +19,9 @@
     }
 
     .Item__text {
+        margin-right: 30px;
         overflow: hidden;
         pointer-events: none;
-        margin-right: 30px;
     }
 }
 

@@ -2,7 +2,7 @@
     0% {
         background-color: var(--color-green);
         opacity: 0.6;
-        transform: rotate(2deg);
+        /* transform: rotate(2deg); */
     }
 
     100% {
@@ -11,6 +11,7 @@
     }
 }
 .palpite-in {
+    pointer-events: none;
     animation: palpiteIn .5s ease forwards
 }
 
@@ -46,5 +47,6 @@
     }
 }
 .palpite-out {
+    pointer-events: none;
     animation: palpiteOut .6s ease-in-out forwards;
 }

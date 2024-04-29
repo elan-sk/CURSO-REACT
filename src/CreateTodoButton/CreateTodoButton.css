@@ -9,13 +9,12 @@
     font-size: 80px;
     font-weight: bolder;
     height: 80px;
+    left: calc(100% - 110px);
     place-content: center;
     position: fixed;
-    right: 30px;
-    left: calc(100% - 110px);
-
-    width: 80px;
+    top: calc(100% - 100px);
     transition: all 0.1s ease-out;
+    width: 80px;
 }
 
 .create-todo-button:hover {

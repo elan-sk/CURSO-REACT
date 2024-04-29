@@ -1,12 +1,18 @@
 @keyframes moveUp {
-    from { transform: translateY(calc(100% + var(--margin-bottom))) }
-    to { translate: 0% }
-}.move-up { animation: moveUp var(--time-animation ) ease-in-out forwards }
+    from { transform: translateY(calc(100% + var(--margin-bottom))); }
+    to { translate: 0%; }
+}.move-up {
+    animation: moveUp var(--time-animation ) ease-in-out forwards;
+    pointer-events: none;
+}
 
 
 @keyframes moveDown {
-    from { transform: translateY(calc(-100% - var(--margin-bottom))) }
-    to { translate: 0% }
-}.move-down { animation: moveDown var(--time-animation ) ease-in-out forwards }
+    from { transform: translateY(calc(-100% - var(--margin-bottom))); }
+    to { translate: 0%; }
+}.move-down {
+    animation: moveDown var(--time-animation ) ease-in-out forwards;
+    pointer-events: none;
+}
 
 
