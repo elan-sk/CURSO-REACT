@@ -64,13 +64,17 @@ function TodoProvider({ children }) {
             completed: false,
             priority: newTodos.length + 1,
         })
-
         animateElement(
             'Item-'+newKey,
             'palpite-in',
             500,
             saveTodos.bind(null, newTodos)
         )
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth' 
+        });
     };
 
     const reorderPriorities = (initialPriority, newTodos) => {
@@ -114,9 +118,12 @@ function TodoProvider({ children }) {
                 todo => 'Item-' + todo.key
             );
 
-            animateElements(ids, 'palpite-out', 600)
-            saveTodos([])
+            saveTodos([], animateElements.bind(null, ids, 'palpite-out', 600), 600)
         }
+    };
+
+    const todosLength= () => {
+        return todos.length
     };
 
     const upPriorityTodo = (key) => {
@@ -179,6 +186,7 @@ function TodoProvider({ children }) {
             getTodo,
             setTodo,
             deleteAll,
+            todosLength,
         }}>
             {children}
         </TodoContext.Provider>

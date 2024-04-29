@@ -57,7 +57,8 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
     if (callback && typeof callback === 'function') {
         console.log('entre');
         await new Promise(resolve => {
-            callback(resolve());
+            callback();
+            resolve();
         });
     }
 }
@@ -71,6 +72,7 @@ function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) 
 
     setTimeout(() => {
         element.classList.toggle(animation)
+        return
     }, time);
 }
 

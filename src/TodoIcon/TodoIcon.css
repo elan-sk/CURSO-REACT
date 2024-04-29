@@ -24,6 +24,14 @@
     }
 }
 
+.Icon-svg:active, .Icon-svg:focus {
+    fill: var(--color-gray);
+    .Icon-svg--hover-message {
+        display: block;
+        transition: all 0.2s ease-in;
+    }
+}
+
 .Icon-svg svg{
     transition: all 0.2s ease-in;
 }

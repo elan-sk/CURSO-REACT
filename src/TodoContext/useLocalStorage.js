@@ -27,10 +27,25 @@ export function useLocalStorage(itemName, initialValue) {
         }, 500);
     }, [itemName, initialValue]);
 
-    async function saveItem (newItem, callback) {
-        localStorage.setItem(itemName, JSON.stringify(newItem));
-        setItem(newItem);
-    };
+    async function saveItem(newItem, callback, time) {
+        console.log(newItem);
+        console.log(callback);
+
+        if (callback && typeof callback === 'function') {
+            await new Promise(resolve => {
+                callback();
+                setTimeout(() => {
+                    resolve()
+                }, time);
+            });
+        }
+
+        await new Promise(resolve => {
+            localStorage.setItem(itemName, JSON.stringify(newItem));
+            setItem(newItem);
+            resolve();
+        });
+    }
 
     return {
         item,
