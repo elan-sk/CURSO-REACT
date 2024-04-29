@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocalStorage } from './useLocalStorage';
 import { animateMultiples } from '../Animation';
-import { animateElement } from '../Animation';
 import { animateElements } from '../Animation';
 import { animateExit } from '../Animation';
 
@@ -64,12 +63,8 @@ function TodoProvider({ children }) {
             completed: false,
             priority: newTodos.length + 1,
         })
-        animateElement(
-            'Item-'+newKey,
-            'palpite-in',
-            500,
-            saveTodos.bind(null, newTodos)
-        )
+
+        saveTodos(newTodos)
     };
 
     const reorderPriorities = (initialPriority, newTodos) => {

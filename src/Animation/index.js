@@ -8,29 +8,34 @@ const timeAnimation = 300
 async function animateElement(id, animation, time = timeAnimation, callback) {
     if (callback && typeof callback === 'function') {
         await new Promise(resolve => {
-            callback(resolve());
+            callback(resolve);
         });
     }
 
-    await new Promise(resolve => {
+    return new Promise(resolve => {
         const element = document.getElementById(id);
         element.classList.toggle(animation);
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             element.classList.toggle(animation);
             resolve();
         }, time);
+
+        clearTimeout(timeoutId);
     });
 }
 
 
+
 function animateElements(ids, animation, time = timeAnimation) {
     ids.forEach( id => {
-        const element = document.getElementById(id)
+        const element = document.getElementById(id) 
         element.classList.toggle(animation)
 
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             element.classList.toggle(animation)
         }, time);
+
+        clearTimeout(timeoutId);
     });
 }
 
@@ -39,9 +44,11 @@ function animateMultiples(ids, animations, time = timeAnimation) {
         const element = document.getElementById(id)
         element.classList.toggle(animations[index])
 
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             element.classList.toggle(animations[index])
         }, time);
+
+        clearTimeout(timeoutId);
     });
 }
 
@@ -49,9 +56,11 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
     await new Promise(resolve => {
         const element = document.getElementById(id);
         element.classList.add(animation);
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             resolve();
         }, time);
+
+        clearTimeout(timeoutId);
     });
 
     if (callback && typeof callback === 'function') {
@@ -70,10 +79,12 @@ function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) 
     element.classList.replace(oldClass, newClass)
     element.classList.toggle(animation)
 
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
         element.classList.toggle(animation)
         return
     }, time);
+
+    clearTimeout(timeoutId);
 }
 
 export {
