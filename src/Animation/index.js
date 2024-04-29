@@ -56,7 +56,7 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
     await new Promise(resolve => {
         const element = document.getElementById(id);
         element.classList.add(animation);
-        const timeoutId = setTimeout(() => {
+        setTimeout(() => {
             resolve();
         }, time);
 
