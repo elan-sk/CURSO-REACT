@@ -17,10 +17,8 @@ async function animateElement(id, animation, time = timeAnimation, callback) {
         element.classList.toggle(animation);
         const timeoutId = setTimeout(() => {
             element.classList.toggle(animation);
-            resolve();
+            resolve(clearTimeout(timeoutId));
         }, time);
-
-        clearTimeout(timeoutId);
     });
 }
 
@@ -28,7 +26,7 @@ async function animateElement(id, animation, time = timeAnimation, callback) {
 
 function animateElements(ids, animation, time = timeAnimation) {
     ids.forEach( id => {
-        const element = document.getElementById(id) 
+        const element = document.getElementById(id)
         element.classList.toggle(animation)
 
         const timeoutId = setTimeout(() => {
@@ -44,24 +42,22 @@ function animateMultiples(ids, animations, time = timeAnimation) {
         const element = document.getElementById(id)
         element.classList.toggle(animations[index])
 
-        const timeoutId = setTimeout(() => {
+        setTimeout(() => {
             element.classList.toggle(animations[index])
         }, time);
-
-        clearTimeout(timeoutId);
     });
 }
 
 async function animateExit(id, animation, time = timeAnimation, callback) {
     await new Promise(resolve => {
+        console.log('entre');
         const element = document.getElementById(id);
         element.classList.add(animation);
         const timeoutId = setTimeout(() => {
-            resolve();
+            resolve(clearTimeout(timeoutId));
         }, time);
-
-       clearTimeout(timeoutId);
     });
+
 
     if (callback && typeof callback === 'function') {
         console.log('entre');
@@ -69,7 +65,6 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
             callback(resolve);
         });
     }
-    
 }
 
 function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) {
@@ -79,12 +74,10 @@ function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) 
     element.classList.replace(oldClass, newClass)
     element.classList.toggle(animation)
 
-    const timeoutId = setTimeout(() => {
+    setTimeout(() => {
         element.classList.toggle(animation)
         return
     }, time);
-
-    clearTimeout(timeoutId);
 }
 
 export {

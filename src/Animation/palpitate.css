@@ -1,12 +1,14 @@
 @keyframes palpiteIn {
     0% {
         background-color: var(--color-green);
+        opacity: 0.6;
         /*transform: rotate(2deg);*/
         /*scale: 120%*/
     }
 
     100% {
         background-color: var(--color-white);
+        opacity: 1;
         /*scale: 100%;*/
         /*transform: rotate(0);*/
     }
