@@ -1,7 +1,7 @@
 import React from 'react';
 import {TodoContext} from '../TodoContext';
 import './TodoForm.css';
-import { useEffect, useRef } from 'react';
+// import { useEffect, useRef } from 'react';
 
 function TodoForm() {
     const {
@@ -16,12 +16,12 @@ function TodoForm() {
         priority: getTodo(todoEdit)?.priority || null,
     });
     const [isEmpty, setIsEmpty] = React.useState(true);
-    const textareaRef = useRef(null);
+    // const textareaRef = useRef(null);
 
-    useEffect(() => {
-        // Cuando el componente se monta, enfoca el textarea
-        textareaRef.current.focus();
-    }, []);
+    // useEffect(() => {
+    //     // Cuando el componente se monta, enfoca el textarea
+    //     textareaRef.current.focus();
+    // }, []);
 
     const onSubmit = (event) => {
         setOpenModal(false);
@@ -51,7 +51,7 @@ function TodoForm() {
     const { text, priority } = newTodoValues;
 
     return (
-        <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5 fade-in'>
+        <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5'>
             <label className='p-2'>
                 <b>
                     {todoEdit ? 'Modifica tu tarea':'Escribe tu nueva tarea'}
@@ -63,7 +63,7 @@ function TodoForm() {
                 className='form-control textarea'
                 onChange={handleChange}
                 value={text}
-                ref={textareaRef}
+                // ref={textareaRef}
             />
             <div>
                 <input
