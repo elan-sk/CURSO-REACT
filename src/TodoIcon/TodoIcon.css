@@ -3,6 +3,7 @@
     height: var(--size);
     min-height: var(--size);
     min-width: var(--size);
+    position: relative;
     width: var(--size);
 
     @media (width >= 768px) {
@@ -16,6 +17,11 @@
 
 .Icon-svg:hover {
     cursor: pointer;
+
+    .Icon-svg--hover-message {
+        display: block;
+        transition: all 0.2s ease-in;
+    }
 }
 
 .Icon-svg svg{
@@ -33,6 +39,15 @@
     width: var(--size);
 }
 
+.Icon-svg--deleteAll{
+    --size: 20px;
+    display: inline-block;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
+    width: var(--size);
+}
+
 .Icon-svg--gray svg{
     fill: var(--color-gray);
 }
@@ -41,12 +56,20 @@
     fill: var(--color-green);
 }
 
+.Icon-svg--red svg{
+    fill: var(--color-red);
+}
+
 .Icon-svg--hover-green svg:hover{
     fill: var(--color-green);
 }
 
 .Icon-svg--hover-red svg:hover{
     fill: var(--color-red);
+}
+
+.Icon-svg--hover-red-dark svg:hover{
+    fill: var(--color-red-dark);
 }
 
 .Icon-svg--priorityUp, .Icon-svg--priorityDown{
@@ -83,4 +106,21 @@
     @media (width >= 768px) {
         bottom: 33px;
     }
+}
+
+.Icon-svg--hover-message{
+    background-color: var(--color-yellow);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: var(--color-black);
+    display: none;
+    font-size: 11px;
+    font-weight: 600;
+    left: 50%;
+    max-width: 100px;
+    padding: 4px;
+    position: absolute;
+    text-align: center;
+    top: calc(100% + 10px);
+    transform: translateX(-50%);
+    width: max-content;
 }

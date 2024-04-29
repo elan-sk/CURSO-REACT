@@ -8,18 +8,16 @@ body {
   background: #F2F4F5;
   color: #1E1E1F;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
-main{
+#root {
+  margin: 0 24px;
   height: 100vh;
   height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-#root {
-  margin: 0 24px;
 }
 
 .logo {

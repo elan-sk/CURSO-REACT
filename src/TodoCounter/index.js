@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoContext } from '../TodoContext';
+import { DeleteIconAll } from '../TodoIcon/DeleteIconAll'
 import './TodoCounter.css';
 
 function TodoCounter() {
@@ -21,7 +22,10 @@ function TodoCounter() {
     }
 
     return (
-        <h1 className="counter" dangerouslySetInnerHTML={{ __html: message }}></h1>
+        <div className='d-flex align-items-center justify-content-center mb-2'>
+            <h1 className="counter m-0 mr-2" dangerouslySetInnerHTML={{ __html: message }}/>
+            <DeleteIconAll/>
+        </div>
     );
 }
 

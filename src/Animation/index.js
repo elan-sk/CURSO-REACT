@@ -7,7 +7,6 @@ const timeAnimation = 300
 
 async function animateElement(id, animation, time = timeAnimation, callback) {
     if (callback && typeof callback === 'function') {
-        console.log('entre');
         await new Promise(resolve => {
             callback(resolve());
         });
@@ -46,11 +45,21 @@ function animateMultiples(ids, animations, time = timeAnimation) {
     });
 }
 
-function animateExit(id, animation, time = timeAnimation) {
-    const element = document.getElementById(id)
-    element.classList.toggle(animation)
+async function animateExit(id, animation, time = timeAnimation, callback) {
+    await new Promise(resolve => {
+        const element = document.getElementById(id);
+        element.classList.add(animation);
+        setTimeout(() => {
+            resolve();
+        }, time);
+    });
 
-    setTimeout(() => {}, time);
+    if (callback && typeof callback === 'function') {
+        console.log('entre');
+        await new Promise(resolve => {
+            callback(resolve());
+        });
+    }
 }
 
 function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) {

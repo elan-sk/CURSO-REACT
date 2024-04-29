@@ -1,7 +1,7 @@
 import React from 'react';
 import {TodoContext} from '../TodoContext';
 import './TodoForm.css';
-
+import { useEffect, useRef } from 'react';
 
 function TodoForm() {
     const {
@@ -11,13 +11,17 @@ function TodoForm() {
         getTodo,
         setTodo,
     } = React.useContext(TodoContext);
-
     const [newTodoValues, setNewTodoValues] = React.useState({
         text: todoEdit ? getTodo(todoEdit).text : null,
         priority: getTodo(todoEdit)?.priority || null,
     });
-
     const [isEmpty, setIsEmpty] = React.useState(true);
+    const textareaRef = useRef(null);
+
+    useEffect(() => {
+        // Cuando el componente se monta, enfoca el textarea
+        textareaRef.current.focus();
+    }, []);
 
     const onSubmit = (event) => {
         setOpenModal(false);
@@ -59,6 +63,7 @@ function TodoForm() {
                 className='form-control textarea'
                 onChange={handleChange}
                 value={text}
+                ref={textareaRef}
             />
             <div>
                 <input
@@ -69,15 +74,15 @@ function TodoForm() {
             </div>
             <div className='d-flex justify-content-center'>
                 <button
-                    type='reset'
-                    className='TodoForm-button TodoForm-button--cancel btn btn-secondary mt-3 m-2'>
-                    Cancelar
-                </button>
-                <button
                     disabled={isEmpty}
                     type='submit'
-                    className='TodoForm-button TodoForm-button--add btn btn-success mt-3 m-2'>
+                    className='TodoForm-button TodoForm-button--add btn btn-success mt-3 m-2 order-1'>
                     {todoEdit ? 'Modificar':'Añadir'}
+                </button>
+                <button
+                    type='reset'
+                    className='TodoForm-button TodoForm-button--cancel btn btn-secondary mt-3 m-2 order-0'>
+                    Cancelar
                 </button>
             </div>
         </form>

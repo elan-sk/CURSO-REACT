@@ -2,6 +2,8 @@ import React from "react";
 import { useLocalStorage } from './useLocalStorage';
 import { animateMultiples } from '../Animation';
 import { animateElement } from '../Animation';
+import { animateElements } from '../Animation';
+import { animateExit } from '../Animation';
 
 const TodoContext = React.createContext();
 
@@ -93,9 +95,29 @@ function TodoProvider({ children }) {
         const todoIndex = newTodos.findIndex((todo) => todo.key === key);
         const priority = newTodos[todoIndex].priority
         newTodos.splice(todoIndex, 1)
-        saveTodos(reorderPriorities(priority, newTodos));
+        const newTodosReorder = reorderPriorities(priority, newTodos)
+
+        animateExit(
+            'Item-'+key,
+            'palpite-out',
+            600,
+            saveTodos.bind(null, newTodosReorder)
+        )
     };
 
+    const deleteAll = () => {
+        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar todas las tareas?');
+
+        if (confirmDelete) {
+            const animationTodos = [...todos];
+            const ids = animationTodos.map(
+                todo => 'Item-' + todo.key
+            );
+
+            animateElements(ids, 'palpite-out', 600)
+            saveTodos([])
+        }
+    };
 
     const upPriorityTodo = (key) => {
         const newTodos = [...todos];
@@ -156,6 +178,7 @@ function TodoProvider({ children }) {
             addTodo,
             getTodo,
             setTodo,
+            deleteAll,
         }}>
             {children}
         </TodoContext.Provider>

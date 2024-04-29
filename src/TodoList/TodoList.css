@@ -1,6 +1,8 @@
 .list {
+    flex: 1 1;
     align-items: center;
     display: flex;
     flex-direction: column;
+    transition: all var(--time-animation) step-end;
 }
 

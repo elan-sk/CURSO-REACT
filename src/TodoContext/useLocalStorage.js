@@ -27,7 +27,7 @@ export function useLocalStorage(itemName, initialValue) {
         }, 500);
     }, [itemName, initialValue]);
 
-    const saveItem = (newItem) => {
+    async function saveItem (newItem, callback) {
         localStorage.setItem(itemName, JSON.stringify(newItem));
         setItem(newItem);
     };

@@ -28,57 +28,63 @@ function AppUI() {
 
     return (
         <>
-            {loading && (
-                <>
-                    <LoadingCounter />
-                    <LoadingSearch />
-                </>
-            )}
-            {!loading && (
-                <>
-                    <TodoCounter />
-                    <TodoSearch />
-                </>
-            )}
-            {!loading && searchedTodos.length !== 0 &&(
-                <div className='text-center pb-2'>
-                    <span >Doble click para editar</span>
-                </div>
-            )}
-            <TodoList>
                 {loading && (
                     <>
-                        <LoadingItem />
-                        <LoadingItem />
-                        <LoadingItem />
-                        <LoadingItem />
-                        <LoadingItem />
+                        <LoadingCounter />
+                        <LoadingSearch />
                     </>
                 )}
-                {error && <TodosError />}
-                {!loading && searchedTodos.length === 0 && <EmptyTodos />}
                 {!loading && (
-                    searchedTodos
-                    .slice()
-                    .sort((a, b) => b.priority - a.priority)
-                    .map(todo => (
-                        <TodoItem
-                            key={todo.key}
-                            keyId={todo.key}
-                            priority={todo.priority}
-                            id={'Item-' + todo.key}
-                            text={todo.text}
-                            completed={todo.completed}
-                            onComplete={() => completeTodo(todo.key)}
-                            onDelete={() => deleteTodo(todo.key)}
-                            upPriority={() => upPriorityTodo(todo.key)}
-                            downPriority={() => downPriorityTodo(todo.key)}
-                        />
-                    ))
+                    <>
+                        <TodoCounter />
+                        <TodoSearch />
+                    </>
                 )}
-            </TodoList>
+                {!loading && searchedTodos.length !== 0 &&(
+                    <div className='text-center pb-2'>
+                        <span >Doble click para editar</span>
+                    </div>
+                )}
+
+                <TodoList>
+                    {loading && (
+                        <>
+                            <LoadingItem />
+                            <LoadingItem />
+                            <LoadingItem />
+                            <LoadingItem />
+                            <LoadingItem />
+                        </>
+                    )}
+                    {error && <TodosError />}
+                    {!loading && searchedTodos.length === 0 && <EmptyTodos />}
+                    {!loading && (
+                        searchedTodos
+                        .slice()
+                        .sort((a, b) => b.priority - a.priority)
+                        .map(todo => (
+                            <TodoItem
+                                key={todo.key}
+                                keyId={todo.key}
+                                priority={todo.priority}
+                                id={'Item-' + todo.key}
+                                text={todo.text}
+                                completed={todo.completed}
+                                onComplete={() => completeTodo(todo.key)}
+                                onDelete={() => deleteTodo(todo.key)}
+                                upPriority={() => upPriorityTodo(todo.key)}
+                                downPriority={() => downPriorityTodo(todo.key)}
+                            />
+                        ))
+                    )}
+                </TodoList>
+                <Logo src="./logo-elan-sk.svg"/>
+
+
+            {/* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */}
             <CreateTodoButton />
-            <Logo src="./logo-elan-sk.svg"/>
 
             {openModal && (
                 <Modal>
