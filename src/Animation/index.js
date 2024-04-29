@@ -60,7 +60,7 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
             resolve();
         }, time);
 
-        clearTimeout(timeoutId);
+       // clearTimeout(timeoutId);
     });
 
     if (callback && typeof callback === 'function') {
@@ -70,6 +70,7 @@ async function animateExit(id, animation, time = timeAnimation, callback) {
             resolve();
         });
     }
+    
 }
 
 function animateReplaceClass(id, animation, replaceClass, time = timeAnimation) {
