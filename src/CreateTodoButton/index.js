@@ -8,9 +8,12 @@ function CreateTodoButton() {
     const {
         setOpenModal,
         setTodoEdit,
+        todosLength,
     } = React.useContext(TodoContext);
+
     return (
-        <button className="create-todo-button fade-in" onClick = {e =>{
+        <button className={todosLength() ? "create-todo-button fade-in" : "create-todo-button spotlight"} onClick = {e =>{
+            console.log(todosLength());
             setOpenModal(state => !state);
             setTodoEdit(null);
         }}

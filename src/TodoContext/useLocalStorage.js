@@ -28,9 +28,6 @@ export function useLocalStorage(itemName, initialValue) {
     }, [itemName, initialValue]);
 
     async function saveItem(newItem, callback, time) {
-        console.log(newItem);
-        console.log(callback);
-
         if (callback && typeof callback === 'function') {
             await new Promise(resolve => {
                 callback();
