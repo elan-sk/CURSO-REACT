@@ -4,9 +4,11 @@
     --color-black: #000000;
     --color-yellow: #FFFFC9;
     --color-green: #5FF1C5;
+    /* --color-green: rgba(0, 0, 0, 0.5); */
+    --color-green-trans: #5ff1c594;
+    /* --color-green-dk:rgba(0, 0, 0, 0.5); */
     --color-red: #c72424b3;
     --color-red-dark: #ed0e0ef5;
-
     --time-animation: .3s;
-    --margin-bottom: 30px;
+    --margin-bottom: 25px;
 }

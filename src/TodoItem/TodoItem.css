@@ -5,13 +5,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: var(--margin-bottom);
     max-width: 350px;
     min-height: 115px;
     overflow: hidden;
     padding: 30px 15px;
     position: relative;
+    transition: all .5s ease;
     width: 100%;
+
 
     .Item__completed {
         color: var(--color-gray);
@@ -23,19 +25,45 @@
         overflow: hidden;
         pointer-events: none;
     }
+
 }
 
-.Item:hover, .Item:active, .Item:focus {
+.Item:hover,
+.Item:active,
+.Item:focus {
     background-color: var(--color-yellow);
 }
 
 .Item--completed {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 2px var(--color-gray-dk);
+
+
     .item__completed {
         color: var(--color-green);
         font-size: 45px;
     }
+
+    .Icon-svg--gray svg {
+        fill: #20232925;
+    }
 }
 
-.Item--completed p{
+.Item--completed::after {
+    border: solid #20232925 2px;
+    border-radius: 4px;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+
+
+.Item--completed p {
     text-decoration: line-through;
 }

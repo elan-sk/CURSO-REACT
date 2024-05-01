@@ -61,22 +61,22 @@
 }
 
 .Icon-svg--green svg{
-    fill: var(--color-green);
+    fill: var(--color-green-trans);
 }
 
 .Icon-svg--red svg{
     fill: var(--color-red);
 }
 
-.Icon-svg--hover-green svg:hover{
+.Icon-svg.Icon-svg--hover-green svg:hover{
     fill: var(--color-green);
 }
 
-.Icon-svg--hover-red svg:hover{
+.Icon-svg.Icon-svg--hover-red svg:hover{
     fill: var(--color-red);
 }
 
-.Icon-svg--hover-red-dark svg:hover{
+.Icon-svg.Icon-svg--hover-red-dark svg:hover{
     fill: var(--color-red-dark);
 }
 
