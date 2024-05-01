@@ -67,3 +67,13 @@
 .Item--completed p {
     text-decoration: line-through;
 }
+
+.Item--completed p {
+    text-decoration: line-through;
+}
+
+.Item--completed:hover,
+.Item--completed:active,
+.Item--completed:focus {
+    background-color: var(--color-yellow-trans);
+}

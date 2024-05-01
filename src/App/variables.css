@@ -3,10 +3,18 @@
     --color-white: #ffffff;
     --color-black: #000000;
     --color-yellow: #FFFFC9;
+    --color-yellow-trans: #ffffc979;
     --color-green: #5FF1C5;
     --color-green-trans: #5ff1c594;
     --color-red: #c72424b3;
     --color-red-dark: #ed0e0ef5;
     --time-animation: .3s;
     --margin-bottom: 25px;
+
+
+    --s: 576px;
+    --m: 768px;
+    --l: 992px;
+    --xl: 1470px;
+
 }

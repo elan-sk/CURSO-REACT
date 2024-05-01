@@ -24,15 +24,17 @@
     }
 }
 
-.Icon-svg:active, .Icon-svg:focus {
+.Icon-svg:active,
+.Icon-svg:focus {
     fill: var(--color-gray);
+
     .Icon-svg--hover-message {
         display: block;
         transition: all 0.2s ease-in;
     }
 }
 
-.Icon-svg svg{
+.Icon-svg svg {
     transition: all 0.2s ease-in;
 }
 
@@ -47,7 +49,7 @@
     width: var(--size);
 }
 
-.Icon-svg--deleteAll{
+.Icon-svg--deleteAll {
     --size: 20px;
     display: inline-block;
     height: var(--size);
@@ -56,31 +58,37 @@
     width: var(--size);
 }
 
-.Icon-svg--gray svg{
+.Icon-svg--gray svg {
     fill: var(--color-gray);
 }
 
-.Icon-svg--green svg{
+.Icon-svg--green svg {
     fill: var(--color-green-trans);
 }
 
-.Icon-svg--red svg{
+.Icon-svg--red svg {
     fill: var(--color-red);
 }
 
-.Icon-svg.Icon-svg--hover-green svg:hover{
-    fill: var(--color-green);
+
+.Icon-svg--hover-green svg:hover {
+    @media (width >= 768px) {
+        fill: var(--color-green);
+    }
 }
 
-.Icon-svg.Icon-svg--hover-red svg:hover{
-    fill: var(--color-red);
+.Icon-svg.Icon-svg--hover-red svg:hover {
+    @media (width >= 768px) {
+        fill: var(--color-red);
+    }
 }
 
-.Icon-svg.Icon-svg--hover-red-dark svg:hover{
+.Icon-svg.Icon-svg--hover-red-dark svg:hover {
     fill: var(--color-red-dark);
 }
 
-.Icon-svg--priorityUp, .Icon-svg--priorityDown{
+.Icon-svg--priorityUp,
+.Icon-svg--priorityDown {
     --size: 30px;
     bottom: 17px;
     height: var(--size);
@@ -91,7 +99,7 @@
     right: 8px;
     width: var(--size);
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
         --size: 20px;
         height: var(--size);
         min-height: var(--size);
@@ -103,20 +111,20 @@
         pointer-events: none;
     }
 
-    path{
+    path {
         pointer-events: initial;
     }
 }
 
-.Icon-svg--priorityUp{
+.Icon-svg--priorityUp {
     bottom: 42px;
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
         bottom: 33px;
     }
 }
 
-.Icon-svg--hover-message{
+.Icon-svg--hover-message {
     background-color: var(--color-yellow);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: var(--color-black);
