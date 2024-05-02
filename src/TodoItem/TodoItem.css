@@ -14,12 +14,6 @@
     transition: all .5s ease;
     width: 100%;
 
-
-    .Item__completed {
-        color: var(--color-gray);
-        font-size: 45px;
-    }
-
     .Item__text {
         margin-right: 30px;
         overflow: hidden;
@@ -37,6 +31,8 @@
 .Item--completed {
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 2px var(--color-gray-dk);
+    color: var(--color-gray-dk);
+    /* font-weight: 500; */
 
 
     .item__completed {
@@ -61,8 +57,6 @@
     top: 0;
     width: 100%;
 }
-
-
 
 .Item--completed p {
     text-decoration: line-through;
