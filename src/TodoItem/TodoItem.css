@@ -32,8 +32,6 @@
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 2px var(--color-gray-dk);
     color: var(--color-gray-dk);
-    /* font-weight: 500; */
-
 
     .item__completed {
         color: var(--color-green);
