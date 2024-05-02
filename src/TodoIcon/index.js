@@ -24,7 +24,7 @@ const TodoIcon = ({ type, color, hover, onClick, hoverMessage }) => {
         `} onClick={onClick}>
             {iconType[type]}
             {hoverMessage && (
-                <span className='Icon-svg--hover-message'>
+                <span className='Icon-svg--hover-message fade-in'>
                     {hoverMessage}
                 </span>
             )}

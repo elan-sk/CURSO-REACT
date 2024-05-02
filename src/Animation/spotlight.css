@@ -1,7 +1,7 @@
 @keyframes spotlight {
-    0% { transform: scale(100%) }
-    25% { transform: scale(120%)    }
-    100% { transform: scale(100%)  }
+    0% { transform: scale(100%) translateY(0) }
+    25% { transform: scale(120%)  translateY(-20px)  }
+    100% { transform: scale(100%) translateY(0) }
 }
 
 .spotlight {
