@@ -60,7 +60,7 @@ function TodoProvider({ children }) {
         newTodos.push({
             key: newKey,
             text: values?.text || null,
-            completed: false,
+            completed: null,
             priority: newTodos.length + 1,
         })
 
@@ -77,10 +77,16 @@ function TodoProvider({ children }) {
         return newTodos
     }
 
-    const completeTodo = (key) => {
+    const completeTodo = ({key, completedState}) => {
         const newTodos = [...todos];
         const todoIndex = newTodos.findIndex((todo) => todo.key === key);
-        newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+        const todo = newTodos[todoIndex]
+
+        if(todo.completed === completedState){
+            todo.completed = null;
+        } else {
+            todo.completed = completedState;
+        }
         saveTodos(newTodos);
     };
 

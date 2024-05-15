@@ -70,7 +70,8 @@ function AppUI() {
                                 id={'Item-' + todo.key}
                                 text={todo.text}
                                 completed={todo.completed}
-                                onComplete={() => completeTodo(todo.key)}
+                                onComplete={() => completeTodo({key: todo.key, completedState: true})}
+                                onWorking={() => completeTodo({key: todo.key, completedState: false})}
                                 onDelete={() => deleteTodo(todo.key)}
                                 upPriority={() => upPriorityTodo(todo.key)}
                                 downPriority={() => downPriorityTodo(todo.key)}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { CompleteIcon } from '../TodoIcon/CompleteIcon'
+import { Working } from '../TodoIcon/Working'
 import { DeleteIcon } from '../TodoIcon/DeleteIcon'
 import { PriorityUp } from '../TodoIcon/PriorityUp'
 import { PriorityDown } from '../TodoIcon/PriorityDown'
@@ -14,6 +15,7 @@ function TodoItem({
         id,
         completed,
         onComplete,
+        onWorking,
         onDelete,
         upPriority,
         downPriority
@@ -27,7 +29,7 @@ function TodoItem({
 
     useEffect(() => {
         setTimeout(() => {
-            setClassNames(completed ? 'Item Item--completed' : 'Item');
+            setClassNames(`Item Item-completed--${completed}`);
         }, 500);
 
         clearTimeout(setTimeout);
@@ -43,6 +45,12 @@ function TodoItem({
                 }
             }
         >
+
+            <Working
+                completed={completed}
+                onWorking={onWorking}
+            />
+
             <CompleteIcon
                 completed={completed}
                 onComplete={onComplete}

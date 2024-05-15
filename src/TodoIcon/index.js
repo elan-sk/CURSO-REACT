@@ -5,6 +5,7 @@ import { ReactComponent as DeleteSVG } from './icons/delete.svg';
 import { ReactComponent as DeleteIconAll } from './icons/trash-solid.svg';
 import { ReactComponent as CaretDownSVG} from './icons/caret-down.svg';
 import { ReactComponent as CaretUpSVG } from './icons/caret-up.svg';
+import { ReactComponent as WorkingSVG } from './icons/person-digging.svg';
 
 const iconType = {
     'check': <CheckSVG/>,
@@ -12,11 +13,13 @@ const iconType = {
     'deleteAll': <DeleteIconAll/>,
     'priorityUp': <CaretUpSVG/>,
     'priorityDown': <CaretDownSVG/>,
+    'working': <WorkingSVG/>,
 }
 
 const TodoIcon = ({ type, color, hover, onClick, hoverMessage }) => {
     return (
         <span className={`
+            fade-in
             Icon-svg
             Icon-svg--${type}
             Icon-svg--${color}

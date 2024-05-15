@@ -69,6 +69,10 @@
     fill: var(--color-red);
 }
 
+.Icon-svg--orange svg {
+    fill: var(--color-orange);
+}
+
 
 .Icon-svg--hover-green svg:hover {
     @media (width >= 768px) {
@@ -79,6 +83,12 @@
 .Icon-svg.Icon-svg--hover-red svg:hover {
     @media (width >= 768px) {
         fill: var(--color-red);
+    }
+}
+
+.Icon-svg.Icon-svg--hover-orange svg:hover {
+    @media (width >= 768px) {
+        fill: var(--color-orange);
     }
 }
 
@@ -142,4 +152,15 @@
         left: 50%;
         transform: translateX(-50%);
     }
+}
+
+.Icon-svg--working {
+    --size: 23px;
+    position: absolute;
+    top: 3px;
+    left: 9px;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
+    width: var(--size);
 }
