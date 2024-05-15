@@ -163,4 +163,5 @@
     min-height: var(--size);
     min-width: var(--size);
     width: var(--size);
+    z-index: 99;
 }

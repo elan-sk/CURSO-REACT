@@ -81,12 +81,8 @@ function TodoProvider({ children }) {
         const newTodos = [...todos];
         const todoIndex = newTodos.findIndex((todo) => todo.key === key);
         const todo = newTodos[todoIndex]
+        todo.completed = todo.completed === completedState ? null : completedState
 
-        if(todo.completed === completedState){
-            todo.completed = null;
-        } else {
-            todo.completed = completedState;
-        }
         saveTodos(newTodos);
     };
 

@@ -81,10 +81,6 @@ function AppUI() {
                 </TodoList>
                 <Logo src="./logo-elan-sk.svg"/>
 
-
-            {/* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */}
             <CreateTodoButton />
 
             {openModal && (
