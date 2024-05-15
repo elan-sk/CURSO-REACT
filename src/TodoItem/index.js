@@ -60,18 +60,6 @@ function TodoItem({
                 <p className='m-0'> {text} </p>
             </div>
 
-            {/* {completed === false && (
-                <header className='Item__state Item__state--false fade-in text-center position-absolute'>
-                    <strong className='m-0'> Trabajando </strong>
-                </header>
-            )}
-
-            {completed && (
-                <header className='Item__state Item__state--true fade-in text-center position-absolute'>
-                    <strong className='m-0'> Finalizada </strong>
-                </header>
-            )} */}
-
             <DeleteIcon
                 onDelete={onDelete}
             />

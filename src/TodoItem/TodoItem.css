@@ -57,6 +57,7 @@
     text-align: center;
     font-size: 15px;
     font-weight: bold;
+    color: var(--color-gray-dk);
 }
 
 .Item-completed--true::after{
