@@ -18,6 +18,14 @@ function TodoProvider({ children }) {
     const [openModal, setOpenModal] = React.useState(false);
     const [todoEdit, setTodoEdit] = React.useState(null);
 
+    const reorderTodosByDrag = (newOrderKeys) => {
+        const newTodos = newOrderKeys.map((key, index) => {
+            const todo = todos.find(t => t.key === key);
+            return { ...todo, priority: index + 1 }; // Nueva prioridad basada en orden
+        });
+        saveTodos(newTodos);
+    };
+
     const completedTodos = todos.filter(
         todo => !!todo.completed
     ).length;
@@ -160,6 +168,7 @@ function TodoProvider({ children }) {
         <TodoContext.Provider value={{
             loading,
             error,
+            reorderTodosByDrag,
             completedTodos,
             moveTodo,
             totalTodos,

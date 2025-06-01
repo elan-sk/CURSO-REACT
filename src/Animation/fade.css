@@ -1,4 +1,4 @@
-@keyframes fadeIn {
+/* @keyframes fadeIn {
     from { opacity: 0 }
     to {opacity: 1 }
 }.fade-in { animation: fadeIn var(--time-animation ) forwards }
@@ -9,4 +9,4 @@
     to {opacity: 0 }
 }.fade-out {
     animation: fadeOut var(--time-animation ) forwards
-}
+} */

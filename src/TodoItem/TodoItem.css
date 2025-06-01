@@ -11,7 +11,7 @@
     overflow: hidden;
     padding: 30px 15px;
     position: relative;
-    transition: all .5s ease;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
     width: 100%;
 
     .Item__text {

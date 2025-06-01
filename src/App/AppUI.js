@@ -1,4 +1,5 @@
 import React from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
@@ -12,84 +13,99 @@ import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
 import { TodoForm } from '../TodoForm';
 import { TodoContext } from '../TodoContext';
-import { Logo } from '../Logo'
+import { Logo } from '../Logo';
 
 function AppUI() {
-    const {
-        loading,
-        error,
-        searchedTodos,
-        completeTodo,
-        deleteTodo,
-        upPriorityTodo,
-        downPriorityTodo,
-        openModal,
-    } = React.useContext(TodoContext);
+  const {
+    loading,
+    error,
+    searchedTodos,
+    completeTodo,
+    deleteTodo,
+    upPriorityTodo,
+    downPriorityTodo,
+    searchValue,
+    openModal,
+    reorderTodosByDrag,
+  } = React.useContext(TodoContext);
 
-    return (
+  // Manejo del reordenamiento
+    const onDragEnd = (result) => {
+        if (!result.destination) return;
+
+        const reordered = Array.from(searchedTodos);
+        const [movedItem] = reordered.splice(result.source.index, 1);
+        reordered.splice(result.destination.index, 0, movedItem);
+
+        if(!searchValue){
+            const newOrderKeys = reordered.map(todo => todo.key);
+            reorderTodosByDrag(newOrderKeys);
+        }
+    };
+
+  return (
+    <>
+      {loading && (
         <>
-                {loading && (
-                    <>
-                        <LoadingCounter />
-                        <LoadingSearch />
-                    </>
-                )}
-                {!loading && (
-                    <>
-                        <TodoCounter />
-                        <TodoSearch />
-                    </>
-                )}
-                {!loading && searchedTodos.length !== 0 &&(
-                    <div className='text-center pb-2'>
-                        <span >Doble click para editar</span>
-                    </div>
-                )}
-
-                <TodoList>
-                    {loading && (
-                        <>
-                            <LoadingItem />
-                            <LoadingItem />
-                            <LoadingItem />
-                            <LoadingItem />
-                            <LoadingItem />
-                        </>
-                    )}
-                    {error && <TodosError />}
-                    {!loading && searchedTodos.length === 0 && <EmptyTodos />}
-                    {!loading && (
-                        searchedTodos
-                        .slice()
-                        .sort((a, b) => b.priority - a.priority)
-                        .map(todo => (
-                            <TodoItem
-                                key={todo.key}
-                                keyId={todo.key}
-                                priority={todo.priority}
-                                id={'Item-' + todo.key}
-                                text={todo.text}
-                                completed={todo.completed}
-                                onComplete={() => completeTodo({key: todo.key, completedState: true})}
-                                onWorking={() => completeTodo({key: todo.key, completedState: false})}
-                                onDelete={() => deleteTodo(todo.key)}
-                                upPriority={() => upPriorityTodo(todo.key)}
-                                downPriority={() => downPriorityTodo(todo.key)}
-                            />
-                        ))
-                    )}
-                </TodoList>
-                <Logo src="./logo-elan-sk.svg"/>
-
-            <CreateTodoButton />
-
-            {openModal && (
-                <Modal>
-                    <TodoForm />
-                </Modal>
-            )}
+          <LoadingCounter />
+          <LoadingSearch />
         </>
-    );
+      )}
+      {!loading && (
+        <>
+          <TodoCounter />
+          <TodoSearch />
+        </>
+      )}
+      {!loading && searchedTodos.length !== 0 && (
+        <div className="text-center pb-2">
+          <span>Doble click para editar</span>
+        </div>
+      )}
+
+      <DragDropContext onDragEnd={onDragEnd}>
+        <TodoList>
+          {loading && (
+            <>
+              <LoadingItem />
+              <LoadingItem />
+              <LoadingItem />
+              <LoadingItem />
+              <LoadingItem />
+            </>
+          )}
+          {error && <TodosError />}
+          {!loading && searchedTodos.length === 0 && <EmptyTodos />}
+          {!loading &&
+            searchedTodos.slice().map((todo, index) => (
+              <TodoItem
+                key={todo.key}
+                keyId={todo.key}
+                priority={todo.priority}
+                id={'Item-' + todo.key}
+                text={todo.text}
+                completed={todo.completed}
+                index={index} // <-- requerido por react-beautiful-dnd
+                onComplete={() => completeTodo({ key: todo.key, completedState: true })}
+                onWorking={() => completeTodo({ key: todo.key, completedState: false })}
+                onDelete={() => deleteTodo(todo.key)}
+                upPriority={() => upPriorityTodo(todo.key)}
+                downPriority={() => downPriorityTodo(todo.key)}
+              />
+            ))}
+        </TodoList>
+      </DragDropContext>
+
+      <Logo src="./logo-elan-sk.svg" />
+      <CreateTodoButton />
+
+      {openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
+    </>
+  );
 }
 
 export { AppUI };
