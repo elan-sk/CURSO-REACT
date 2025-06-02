@@ -1,4 +1,3 @@
-// TodoList.js
 import './TodoList.css';
 import { Droppable } from 'react-beautiful-dnd';
 

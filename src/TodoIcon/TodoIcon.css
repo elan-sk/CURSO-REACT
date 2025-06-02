@@ -96,43 +96,6 @@
     fill: var(--color-red-dark);
 }
 
-.Icon-svg--priorityUp,
-.Icon-svg--priorityDown {
-    --size: 30px;
-    bottom: 17px;
-    height: var(--size);
-    min-height: var(--size);
-    min-width: var(--size);
-    pointer-events: none;
-    position: absolute;
-    right: 8px;
-    width: var(--size);
-
-    @media (width >=768px) {
-        --size: 20px;
-        height: var(--size);
-        min-height: var(--size);
-        min-width: var(--size);
-        width: var(--size);
-    }
-
-    svg {
-        pointer-events: none;
-    }
-
-    path {
-        pointer-events: initial;
-    }
-}
-
-.Icon-svg--priorityUp {
-    bottom: 42px;
-
-    @media (width >=768px) {
-        bottom: 33px;
-    }
-}
-
 .Icon-svg--hover-message {
     background-color: var(--color-yellow);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -156,9 +119,14 @@
 
 .Icon-svg--working {
     --size: 23px;
-    position: absolute;
-    top: 3px;
-    left: 9px;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
+    width: var(--size);
+}
+
+.Icon-svg--check {
+    --size: 23px;
     height: var(--size);
     min-height: var(--size);
     min-width: var(--size);

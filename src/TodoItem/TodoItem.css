@@ -17,6 +17,11 @@
     .Item__text {
         margin-right: 10px;
         overflow: hidden;
+
+        img {
+            pointer-events: all;
+            width: 100%;
+        }
     }
 }
 
@@ -91,10 +96,17 @@
     background-color: var(--color-yellow-trans);
 }
 
-
 .Item__state {
     top: 4px;
     left: 0;
     width: 100%;
     pointer-events: null;
+}
+
+.items-eyebrows {
+    position: absolute;
+    top: 3px;
+    left: 9px;
+    display: flex;
+    gap: 2px;
 }

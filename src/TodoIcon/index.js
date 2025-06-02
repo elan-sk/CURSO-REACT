@@ -1,4 +1,3 @@
-import React from 'react'
 import './TodoIcon.css'
 import { ReactComponent as CheckSVG } from './icons/check.svg';
 import { ReactComponent as DeleteSVG } from './icons/delete.svg';
