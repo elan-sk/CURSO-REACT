@@ -1,6 +1,5 @@
 import React from 'react';
 import {TodoContext} from '../TodoContext';
-import { useEffect, useRef } from 'react';
 import './TodoForm.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -33,15 +32,6 @@ function TodoForm() {
     const onReset = () => {
         setOpenModal(false);
     }
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setNewTodoValues(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-
-    };
 
     const { text, priority } = newTodoValues;
 
