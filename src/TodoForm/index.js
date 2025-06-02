@@ -1,7 +1,9 @@
 import React from 'react';
 import {TodoContext} from '../TodoContext';
-import './TodoForm.css';
 import { useEffect, useRef } from 'react';
+import './TodoForm.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function TodoForm() {
     const {
@@ -16,12 +18,6 @@ function TodoForm() {
         priority: getTodo(todoEdit)?.priority || null,
     });
     const [isEmpty, setIsEmpty] = React.useState(true);
-    const textareaRef = useRef(null);
-
-    useEffect(() => {
-        // Cuando el componente se monta, enfoca el textarea
-        textareaRef.current.focus();
-    }, []);
 
     const onSubmit = (event) => {
         setOpenModal(false);
@@ -40,7 +36,6 @@ function TodoForm() {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setIsEmpty(value === '');
         setNewTodoValues(prevState => ({
             ...prevState,
             [name]: value
@@ -50,6 +45,12 @@ function TodoForm() {
 
     const { text, priority } = newTodoValues;
 
+    React.useEffect(() => {
+        const isEditorEmpty = !text || text === '<p><br></p>' || text.trim() === '';
+        setIsEmpty(isEditorEmpty);
+    }, [text]);
+
+
     return (
         <form onSubmit={onSubmit} onReset={onReset} className='form d-flex flex-column p-3 mb-5'>
             <label className='p-2'>
@@ -57,13 +58,12 @@ function TodoForm() {
                     {todoEdit ? 'Modifica tu tarea':'Escribe tu nueva tarea'}
                 </b>
             </label>
-            <textarea
+            <ReactQuill
                 name="text"
-                placeholder='Ingresa tu nueva tarea'
-                className='form-control textarea'
-                onChange={handleChange}
-                value={text}
-                ref={textareaRef}
+                value={text || ''}
+                onChange={(value) =>
+                    setNewTodoValues(prev => ({ ...prev, text: value }))
+                }
             />
             <div>
                 <input

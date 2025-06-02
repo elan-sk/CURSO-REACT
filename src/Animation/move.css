@@ -1,4 +1,4 @@
-/* @keyframes moveUp {
+@keyframes moveUp {
     from { transform: translateY(calc(100% + var(--margin-bottom))); }
     to { translate: 0%; }
 }.move-up {
@@ -15,4 +15,4 @@
     pointer-events: none;
 }
 
- */
+

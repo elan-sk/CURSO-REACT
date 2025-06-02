@@ -16,7 +16,14 @@
     border: grey solid 2px;
     width: 350px;
 }
-.textarea {
-    max-height: 300px;
+.quill {
+    background-color: var(--color-white);
+}
+.ql-editor {
     min-height: 150px;
+    max-height: 300px;
+    padding-bottom: 10px;
+    p {
+        margin-bottom: 1rem !important;
+    }
 }

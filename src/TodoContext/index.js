@@ -126,44 +126,6 @@ function TodoProvider({ children }) {
         return todos.length
     };
 
-    const upPriorityTodo = (key) => {
-        const newTodos = [...todos];
-        const todoIndex = newTodos.findIndex((todo) => todo.key === key);
-        const currentTodo = newTodos[todoIndex];
-        const currentPriority = currentTodo.priority;
-
-        if(newTodos.length <= 1 || newTodos.length <= currentPriority) return
-        const nextTodo= newTodos.find(item => item.priority === currentPriority + 1)
-        const nextPriority = nextTodo.priority
-        currentTodo.priority = nextPriority
-        nextTodo.priority = currentPriority
-
-        animateMultiples(
-            ['Item-'+ currentTodo.key, 'Item-'+ nextTodo.key],
-            ['move-up','move-down']
-        );
-        saveTodos(newTodos);
-    };
-
-    const downPriorityTodo = (key) => {
-        const newTodos = [...todos];
-        const todoIndex = newTodos.findIndex((todo) => todo.key === key);
-        const currentTodo = newTodos[todoIndex];
-        const currentPriority = currentTodo.priority;
-
-        if(newTodos.length <= 1 || currentPriority <= 1) return
-        const previousTodo= newTodos.find(item => item.priority === currentPriority - 1)
-        const previousPriority = previousTodo.priority
-        currentTodo.priority = previousPriority
-        previousTodo.priority = currentPriority
-
-        animateMultiples(
-            ['Item-'+ currentTodo.key, 'Item-'+ previousTodo.key],
-            ['move-down','move-up']
-        );
-        saveTodos(newTodos);
-    };
-
     return (
         <TodoContext.Provider value={{
             loading,
@@ -177,8 +139,6 @@ function TodoProvider({ children }) {
             searchedTodos,
             completeTodo,
             deleteTodo,
-            upPriorityTodo,
-            downPriorityTodo,
             openModal,
             setOpenModal,
             todoEdit,

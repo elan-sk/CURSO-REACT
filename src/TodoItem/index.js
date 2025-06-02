@@ -3,8 +3,6 @@ import React, { useEffect, useContext } from 'react';
 import { CompleteIcon } from '../TodoIcon/CompleteIcon';
 import { Working } from '../TodoIcon/Working';
 import { DeleteIcon } from '../TodoIcon/DeleteIcon';
-import { PriorityUp } from '../TodoIcon/PriorityUp';
-import { PriorityDown } from '../TodoIcon/PriorityDown';
 import { TodoContext } from '../TodoContext';
 import { Draggable } from 'react-beautiful-dnd';
 import './TodoItem.css';
@@ -18,8 +16,6 @@ function TodoItem({
   onComplete,
   onWorking,
   onDelete,
-  upPriority,
-  downPriority,
 }) {
   const { setOpenModal, setTodoEdit } = useContext(TodoContext);
   const [classNames, setClassNames] = React.useState('Item palpite-in');
@@ -46,12 +42,8 @@ function TodoItem({
         >
           <Working completed={completed} onWorking={onWorking} />
           <CompleteIcon completed={completed} onComplete={onComplete} />
-          <div className="Item__text">
-            <p className="m-0"> {text} </p>
-          </div>
+          <div className='Item__text' dangerouslySetInnerHTML={{ __html: text }} />
           <DeleteIcon onDelete={onDelete} />
-          <PriorityDown downPriority={downPriority} />
-          <PriorityUp upPriority={upPriority} />
         </li>
       )}
     </Draggable>
