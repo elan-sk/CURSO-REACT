@@ -53,7 +53,7 @@ function AppUI() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [loading]);
+  }, [loading, setOpenModal, setTodoEdit]);
 
   return (
     <>

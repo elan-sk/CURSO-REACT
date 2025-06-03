@@ -12,23 +12,28 @@ function TodoForm() {
         getTodo,
         setTodo,
     } = React.useContext(TodoContext);
+
     const [newTodoValues, setNewTodoValues] = React.useState({
         text: todoEdit ? getTodo(todoEdit).text : null,
     });
+
     const [isEmpty, setIsEmpty] = React.useState(true);
-    const onSubmit = (event) => {
+
+    const onSubmit = React.useCallback((event) => {
         setOpenModal(false);
 
-        if (todoEdit ) {
+        if (todoEdit) {
             setTodo(todoEdit, newTodoValues);
         } else {
             event.preventDefault();
             addTodo(newTodoValues);
         }
-    }
+    }, [addTodo, setOpenModal, setTodo, todoEdit, newTodoValues]);
+
     const onReset = () => {
         setOpenModal(false);
     }
+
     const { text } = newTodoValues;
     const quillRef = React.useRef(null);
 
