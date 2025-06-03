@@ -1,4 +1,3 @@
-
 import './fade.css';
 import './move.css';
 import './palpitate.css';
