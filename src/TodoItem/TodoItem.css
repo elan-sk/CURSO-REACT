@@ -45,8 +45,8 @@
         fill: #20232925;
     }
 
-    img a {
-        opacity: .7;
+    img, a {
+        opacity: .5;
     }
 }
 
