@@ -17,6 +17,11 @@
     width: 80px;
 }
 
+.create-todo-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .create-todo-button:hover {
     transform: scale(110%);
 }

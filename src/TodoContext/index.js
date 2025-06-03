@@ -18,9 +18,9 @@ function TodoProvider({ children }) {
     const [todoEdit, setTodoEdit] = React.useState(null);
 
     const reorderTodosByDrag = (newOrderKeys) => {
-        const newTodos = newOrderKeys.map((key, index) => {
+        const newTodos = newOrderKeys.map((key) => {
             const todo = todos.find(t => t.key === key);
-            return { ...todo, priority: index + 1 }; // Nueva prioridad basada en orden
+            return { ...todo};
         });
         saveTodos(newTodos);
     };
@@ -38,19 +38,10 @@ function TodoProvider({ children }) {
         }
     );
 
-    const moveTodo = (key, values) => {
-        const newTodos = [...todos];
-        let itemFound= newTodos.find(item => item.key === key)
-        itemFound.text = values?.text;
-        itemFound.priority = values?.priority;
-        saveTodos(newTodos);
-    };
-
     const setTodo = (key, values) => {
         const newTodos = [...todos];
         let itemFound= newTodos.find(item => item.key === key)
         itemFound.text = values?.text;
-        itemFound.priority = values?.priority;
         saveTodos(newTodos);
     };
 
@@ -62,27 +53,15 @@ function TodoProvider({ children }) {
 
     const addTodo = (values) => {
         const newTodos = [...todos];
-        let indexLastTodo = newTodos.length - 1;
-        let newKey = indexLastTodo >= 0 ? newTodos[indexLastTodo].key + 1 : 1;
+        const newKey = Date.now() + Math.floor(Math.random() * 1000);
         newTodos.push({
             key: newKey,
             text: values?.text || null,
             completed: null,
-            priority: newTodos.length + 1,
         })
 
         saveTodos(newTodos)
     };
-
-    const reorderPriorities = (initialPriority, newTodos) => {
-        if(newTodos.length === 0) return newTodos
-        const lastPriority =  newTodos.length + 1;
-        for (let index = initialPriority+1 ; index <= lastPriority; index++) {
-            let itemFound= newTodos.find(item => item.priority === index)
-            itemFound.priority = index - 1
-        }
-        return newTodos
-    }
 
     const completeTodo = ({key, completedState}) => {
         const newTodos = [...todos];
@@ -96,15 +75,13 @@ function TodoProvider({ children }) {
     const deleteTodo = (key) => {
         let newTodos = [...todos];
         const todoIndex = newTodos.findIndex((todo) => todo.key === key);
-        const priority = newTodos[todoIndex].priority
         newTodos.splice(todoIndex, 1)
-        const newTodosReorder = reorderPriorities(priority, newTodos)
 
         animateExit(
-            'Item-'+key,
+            key,
             'palpite-out',
             600,
-            saveTodos.bind(null, newTodosReorder)
+            saveTodos.bind(null, newTodos)
         )
     };
 
@@ -114,7 +91,7 @@ function TodoProvider({ children }) {
         if (confirmDelete) {
             const animationTodos = [...todos];
             const ids = animationTodos.map(
-                todo => 'Item-' + todo.key
+                todo => todo.key
             );
 
             saveTodos([], animateElements.bind(null, ids, 'palpite-out', 600), 600)
@@ -131,7 +108,6 @@ function TodoProvider({ children }) {
             error,
             reorderTodosByDrag,
             completedTodos,
-            moveTodo,
             totalTodos,
             searchValue,
             setSearchValue,

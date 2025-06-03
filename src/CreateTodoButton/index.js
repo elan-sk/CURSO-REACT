@@ -12,11 +12,15 @@ function CreateTodoButton() {
         loading,
     } = React.useContext(TodoContext);
 
+    const handleOpenNewTodo = () => {
+        setOpenModal(true);
+        setTodoEdit(null);
+    };
+
     return (
-        <button className={(!todosLength() &&  !loading) ? "create-todo-button spotlight" : "create-todo-button"} onClick = {e =>{
-            setOpenModal(state => !state);
-            setTodoEdit(null);
-        }}
+        <button
+            className={(!todosLength() &&  !loading) ? "create-todo-button spotlight" : "create-todo-button"}
+            onClick = {handleOpenNewTodo}
         >
             +
         </button>

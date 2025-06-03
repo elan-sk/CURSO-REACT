@@ -14,10 +14,8 @@ function TodoForm() {
     } = React.useContext(TodoContext);
     const [newTodoValues, setNewTodoValues] = React.useState({
         text: todoEdit ? getTodo(todoEdit).text : null,
-        priority: getTodo(todoEdit)?.priority || null,
     });
     const [isEmpty, setIsEmpty] = React.useState(true);
-
     const onSubmit = (event) => {
         setOpenModal(false);
 
@@ -28,17 +26,41 @@ function TodoForm() {
             addTodo(newTodoValues);
         }
     }
-
     const onReset = () => {
         setOpenModal(false);
     }
-
-    const { text, priority } = newTodoValues;
+    const { text } = newTodoValues;
+    const quillRef = React.useRef(null);
 
     React.useEffect(() => {
         const isEditorEmpty = !text || text === '<p><br></p>' || text.trim() === '';
         setIsEmpty(isEditorEmpty);
-    }, [text]);
+        const handleKeyDown = (event) => {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                const isEditorEmpty = !text || text === '<p><br></p>' || text.trim() === '';
+                if (!isEditorEmpty) {
+                    onSubmit(event);
+                }
+            }
+
+            if (event.key === 'Escape') {
+                setOpenModal(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [text, setOpenModal, onSubmit]);
+
+    React.useEffect(() => {
+        if (quillRef.current) {
+            const editor = quillRef.current.getEditor(); // Quill instance
+            editor.focus(); // Pone el foco en el editor
+        }
+    }, []);
 
 
     return (
@@ -49,19 +71,13 @@ function TodoForm() {
                 </b>
             </label>
             <ReactQuill
+                ref={quillRef}
                 name="text"
                 value={text || ''}
                 onChange={(value) =>
                     setNewTodoValues(prev => ({ ...prev, text: value }))
                 }
             />
-            <div>
-                <input
-                    hidden
-                    name="priority"
-                    value={priority}
-                    />
-            </div>
             <div className='d-flex justify-content-center'>
                 <button
                     disabled={isEmpty}

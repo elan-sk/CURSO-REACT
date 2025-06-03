@@ -25,21 +25,35 @@ function AppUI() {
     searchValue,
     openModal,
     reorderTodosByDrag,
+    setOpenModal,
+    setTodoEdit,
   } = React.useContext(TodoContext);
 
   // Manejo del reordenamiento
-    const onDragEnd = (result) => {
-        if (!result.destination) return;
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
 
-        const reordered = Array.from(searchedTodos);
-        const [movedItem] = reordered.splice(result.source.index, 1);
-        reordered.splice(result.destination.index, 0, movedItem);
+    const reordered = Array.from(searchedTodos);
+    const [movedItem] = reordered.splice(result.source.index, 1);
+    reordered.splice(result.destination.index, 0, movedItem);
 
-        if(!searchValue){
-            const newOrderKeys = reordered.map(todo => todo.key);
-            reorderTodosByDrag(newOrderKeys);
+    if(!searchValue){
+        const newOrderKeys = reordered.map(todo => todo.key);
+        reorderTodosByDrag(newOrderKeys);
+    }
+  };
+
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          setOpenModal(true);
+          setTodoEdit(null);
         }
     };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [loading]);
 
   return (
     <>
@@ -79,10 +93,10 @@ function AppUI() {
               <TodoItem
                 key={todo.key}
                 keyId={todo.key}
-                id={'Item-' + todo.key}
+                id={todo.key}
                 text={todo.text}
                 completed={todo.completed}
-                index={index} // <-- requerido por react-beautiful-dnd
+                index={index}
                 onComplete={() => completeTodo({ key: todo.key, completedState: true })}
                 onWorking={() => completeTodo({ key: todo.key, completedState: false })}
                 onDelete={() => deleteTodo(todo.key)}

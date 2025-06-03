@@ -1,4 +1,3 @@
-import React from 'react';
 import { TodoProvider } from '../TodoContext';
 import { AppUI } from './AppUI';
 import './variables.css'
