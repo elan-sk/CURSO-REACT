@@ -40,6 +40,7 @@ function TodoForm() {
     React.useEffect(() => {
         const isEditorEmpty = !text || text === '<p><br></p>' || text.trim() === '';
         setIsEmpty(isEditorEmpty);
+
         const handleKeyDown = (event) => {
             if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
                 const isEditorEmpty = !text || text === '<p><br></p>' || text.trim() === '';
@@ -55,9 +56,8 @@ function TodoForm() {
 
         window.addEventListener('keydown', handleKeyDown);
 
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
+        return () => window.removeEventListener('keydown', handleKeyDown);
+
     }, [text, setOpenModal, onSubmit]);
 
     React.useEffect(() => {

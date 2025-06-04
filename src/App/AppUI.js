@@ -45,7 +45,7 @@ function AppUI() {
 
   React.useEffect(() => {
     const handleKeyDown = (event) => {
-        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter' && !openModal) {
           setOpenModal(true);
           setTodoEdit(null);
         }
@@ -53,7 +53,7 @@ function AppUI() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [loading, setOpenModal, setTodoEdit]);
+  }, [loading, setOpenModal, setTodoEdit, openModal]);
 
   return (
     <>

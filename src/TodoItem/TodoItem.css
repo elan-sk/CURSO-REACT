@@ -9,7 +9,7 @@
     max-width: 400px;
     min-height: 115px;
     overflow: hidden;
-    padding: 30px 15px 10px;
+    padding: 30px 15px 12px;
     position: relative;
     transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease, opacity 0.5s ease, color 0.5s ease;
     width: 100%;
@@ -23,6 +23,9 @@
             width: 100%;
         }
 
+        p {
+            margin-bottom: 5px !important;
+        }
 
         p:first-of-type {
             font-weight: bold;
@@ -63,17 +66,17 @@
     border: solid #20232925 2px;
     border-radius: 4px;
     bottom: 0;
+    color: var(--color-gray-dk);
     content: '';
     display: block;
+    font-size: 12.2px;
+    font-weight: bold;
     left: 0;
     pointer-events: none;
     position: absolute;
+    text-align: center;
     top: 0;
     width: 100%;
-    text-align: center;
-    font-size: 12.2px;
-    font-weight: bold;
-    color: var(--color-gray-dk);
 }
 
 .Item-completed--true::after{
@@ -106,16 +109,16 @@
 }
 
 .Item__state {
-    top: 4px;
     left: 0;
-    width: 100%;
     pointer-events: null;
+    top: 4px;
+    width: 100%;
 }
 
 .items-eyebrows {
-    position: absolute;
-    top: 3px;
-    left: 9px;
     display: flex;
     gap: 2px;
+    left: 9px;
+    position: absolute;
+    top: 3px;
 }
