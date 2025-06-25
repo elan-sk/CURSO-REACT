@@ -57,6 +57,17 @@
     width: var(--size);
 }
 
+.Icon-svg--resetAll {
+    --size: 23px;
+    display: inline-block;
+    margin-left: 4px;
+    margin-top: 3px;
+    height: var(--size);
+    min-height: var(--size);
+    min-width: var(--size);
+    width: var(--size);
+}
+
 .Icon-svg--gray svg {
     fill: var(--color-gray);
 }
@@ -73,6 +84,10 @@
     fill: var(--color-orange);
 }
 
+.Icon-svg--blue svg {
+    fill: var(--color-blue);
+}
+
 
 .Icon-svg--hover-green svg:hover {
     @media (width >= 768px) {
@@ -83,6 +98,12 @@
 .Icon-svg.Icon-svg--hover-red svg:hover {
     @media (width >= 768px) {
         fill: var(--color-red);
+    }
+}
+
+.Icon-svg.Icon-svg--hover-blue-lt svg:hover {
+    @media (width >= 768px) {
+        fill: var(--color-blue-lt);
     }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TodoContext } from '../TodoContext';
 import { DeleteIconAll } from '../TodoIcon/DeleteIconAll';
+import { ResetIconAll } from '../TodoIcon/ResetIconAll';
 import Confetti from 'react-confetti';
 import { useWindowSize } from '@react-hook/window-size';
 import './TodoCounter.css';
@@ -42,6 +43,7 @@ function TodoCounter() {
         dangerouslySetInnerHTML={{ __html: message }}
       />
       <DeleteIconAll />
+      <ResetIconAll />
     </div>
   );
 }

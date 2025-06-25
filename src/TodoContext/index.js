@@ -98,6 +98,16 @@ function TodoProvider({ children }) {
         }
     };
 
+    const resetAll = () => {
+        let newTodos = [...todos];
+        newTodos.forEach(todo => {
+            if(todo.completed !== null){
+                todo.completed = null
+            }
+        })
+        saveTodos(newTodos)
+    };
+
     const todosLength= () => {
         return todos.length
     };
@@ -122,6 +132,7 @@ function TodoProvider({ children }) {
             getTodo,
             setTodo,
             deleteAll,
+            resetAll,
             todosLength,
         }}>
             {children}

@@ -2,12 +2,14 @@ import './TodoIcon.css'
 import { ReactComponent as CheckSVG } from './icons/check.svg';
 import { ReactComponent as DeleteSVG } from './icons/delete.svg';
 import { ReactComponent as DeleteIconAll } from './icons/trash-solid.svg';
+import { ReactComponent as ResetIconAll } from './icons/reset.svg';
 import { ReactComponent as WorkingSVG } from './icons/person-digging.svg';
 
 const iconType = {
     'check': <CheckSVG/>,
     'delete': <DeleteSVG/>,
     'deleteAll': <DeleteIconAll/>,
+    'resetAll': <ResetIconAll/>,
     'working': <WorkingSVG/>,
 }
 
